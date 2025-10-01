@@ -95,16 +95,13 @@ namespace EOM.TSHotelManagement.FormUI
                 bool isGitee) where TAsset : class
         {
             var version = tagName.Replace("v", string.Empty);
-            lblReleaseLog.Text = $"{releaseBody}";
-            lblReleaseLog.Refresh();
+            rtbReleaseLog.Text = $"{releaseBody}";
             lbInternetSoftwareVersion.Text = version;
             lbInternetSoftwareVersion.Refresh();
             if (version.Equals(lblLocalSoftwareVersion.Text.Trim()))
             {
                 LoginInfo.SoftwareReleaseLog = $"{releaseBody}";
-                NotificationService.ShowSuccess("当前已是最新版本，无需更新！3秒后将自动跳转登录页面");
-                Task.Delay(3000).Wait();
-                Task.Run(() => threadPro());
+                NotificationService.ShowSuccess("当前已是最新版本，无需更新！");
                 return;
             }
 
@@ -349,6 +346,16 @@ namespace EOM.TSHotelManagement.FormUI
 
             [JsonProperty("avatar_url")]
             public string AvatarUrl { get; set; }
+        }
+
+        private void btnGo_Click(object sender, EventArgs e)
+        {
+            Task.Run(() => threadPro());
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            ExitApplication();
         }
     }
 }

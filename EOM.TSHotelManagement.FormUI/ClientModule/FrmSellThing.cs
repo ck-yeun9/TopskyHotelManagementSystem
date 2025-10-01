@@ -25,7 +25,6 @@
 using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.Common.Util;
 using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
@@ -323,13 +322,13 @@ namespace EOM.TSHotelManagement.FormUI
                         var updateResponse = HttpHelper.JsonToModel<BaseResponse>(result.message);
                         if (updateResponse.Success == false)
                         {
-                            RecordHelper.Record($"接口异常。Message：\n{updateResponse.Message}", Common.Core.LogLevel.Critical);
+                            RecordHelper.Record($"接口异常。Message：\n{updateResponse.Message}", LogLevel.Critical);
                             NotificationService.ShowError($"{ApiConstants.Sellthing_UpdateSellthingInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
                         NotificationService.ShowSuccess("撤销成功！");
                         #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + spend.CustomerNumber + "撤销了消费商品:" + txtSellName.Text + "操作！", Common.Core.LogLevel.Warning);
+                        RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + spend.CustomerNumber + "撤销了消费商品:" + txtSellName.Text + "操作！", LogLevel.Warning);
                         #endregion
                         LoadSpendInfoByRoomNo(r);
                         LoadSellThingInfo();

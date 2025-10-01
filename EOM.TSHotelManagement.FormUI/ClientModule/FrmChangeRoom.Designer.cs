@@ -111,7 +111,7 @@
             Controls.Add(label1);
             Controls.Add(label24);
             Controls.Add(ucWindowHeader1);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             MaximizeBox = false;

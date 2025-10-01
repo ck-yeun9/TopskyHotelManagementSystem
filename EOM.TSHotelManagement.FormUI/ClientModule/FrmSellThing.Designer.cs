@@ -317,7 +317,7 @@
             Controls.Add(txtFind);
             Controls.Add(label1);
             Controls.Add(groupBox2);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;

@@ -27,6 +27,7 @@ using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Util;
 using EOM.TSHotelManagement.FormUI.Properties;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
 using System.Diagnostics;
@@ -56,7 +57,7 @@ namespace EOM.TSHotelManagement.FormUI
             // 接受Form1对象
             this.returnForm1 = F1;
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "版本登入了系统！", Common.Core.LogLevel.Critical);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "版本登入了系统！", LogLevel.Critical);
             #endregion
             Stop = StopUseExit;
             Start = StartUseExit;

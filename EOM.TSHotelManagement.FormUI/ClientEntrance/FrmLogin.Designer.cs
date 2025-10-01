@@ -164,7 +164,7 @@
             Controls.Add(txtWorkerPwd);
             Controls.Add(txtAccount);
             Controls.Add(label2);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "FrmLogin";

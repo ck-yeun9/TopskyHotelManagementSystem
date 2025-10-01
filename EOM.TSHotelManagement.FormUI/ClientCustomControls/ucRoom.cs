@@ -194,19 +194,19 @@ namespace EOM.TSHotelManagement.FormUI
             }
             switch (romRoomInfo.RoomStateId)
             {
-                case (int)Common.Core.RoomState.Vacant:
+                case (int)Shared.RoomState.Vacant:
                     btnRoom.BackgroundImage = Resources.可住状态;
                     break;
-                case (int)Common.Core.RoomState.Occupied:
+                case (int)Shared.RoomState.Occupied:
                     btnRoom.BackgroundImage = Resources.已住状态;
                     break;
-                case (int)Common.Core.RoomState.Maintenance:
+                case (int)Shared.RoomState.Maintenance:
                     btnRoom.BackgroundImage = Resources.维修状态;
                     break;
-                case (int)Common.Core.RoomState.Dirty:
+                case (int)Shared.RoomState.Dirty:
                     btnRoom.BackgroundImage = Resources.脏房状态;
                     break;
-                case (int)Common.Core.RoomState.Reserved:
+                case (int)Shared.RoomState.Reserved:
                     btnRoom.BackgroundImage = Resources.预约状态;
                     break;
             }
@@ -228,9 +228,9 @@ namespace EOM.TSHotelManagement.FormUI
                 rm_RoomNo = romRoomInfo.RoomNumber;
                 rm_RoomType = romRoomInfo.RoomName;
                 rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomRent).ToString();
-                if (r.RoomStateId == new EnumHelper().GetEnumValue(Common.Core.RoomState.Reserved))
+                if (r.RoomStateId == new EnumHelper().GetEnumValue(Shared.RoomState.Reserved))
                 {
-                    rm_RoomStateId = (int)Common.Core.RoomState.Reserved;
+                    rm_RoomStateId = (int)Shared.RoomState.Reserved;
                     NotificationService.ShowInfo("欢迎入住，请先注册客户信息！");
                     FrmReserList frm = new FrmReserList();
                     frm.ShowDialog();
@@ -295,7 +295,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void tsmiChangeState_Click(object sender, EventArgs e)
         {
-            if (r.RoomStateId == (int)Common.Core.RoomState.Reserved)
+            if (r.RoomStateId == (int)Shared.RoomState.Reserved)
             {
                 var dr = AntdUI.Modal.open(new AntdUI.Modal.Config(null, UIMessageConstant.Warning, "当前房间已被预约，确认更改状态后将会删除原本预约状态及信息，你确定吗？", AntdUI.TType.Warn)
                 {
@@ -395,7 +395,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 switch (r.RoomStateId)
                 {
-                    case (int)Common.Core.RoomState.Vacant:
+                    case (int)Shared.RoomState.Vacant:
                         item.Enabled = item.Text switch
                         {
                             UIControlConstant.CheckInRoom => true,
@@ -407,7 +407,7 @@ namespace EOM.TSHotelManagement.FormUI
                             _ => item.Enabled
                         };
                         break;
-                    case (int)Common.Core.RoomState.Occupied:
+                    case (int)Shared.RoomState.Occupied:
                         item.Enabled = item.Text switch
                         {
                             UIControlConstant.CheckInRoom => false,
@@ -419,8 +419,8 @@ namespace EOM.TSHotelManagement.FormUI
                             _ => item.Enabled
                         };
                         break;
-                    case (int)Common.Core.RoomState.Maintenance:
-                    case (int)Common.Core.RoomState.Dirty:
+                    case (int)Shared.RoomState.Maintenance:
+                    case (int)Shared.RoomState.Dirty:
                         item.Enabled = item.Text switch
                         {
                             UIControlConstant.CheckInRoom => false,

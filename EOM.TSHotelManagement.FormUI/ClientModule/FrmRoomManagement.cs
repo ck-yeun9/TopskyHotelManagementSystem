@@ -25,7 +25,6 @@
 using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.FormUI.Properties;
 using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;

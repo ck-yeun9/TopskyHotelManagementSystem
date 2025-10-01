@@ -70,7 +70,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(btnUnlock);
             Controls.Add(txtPassword);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;

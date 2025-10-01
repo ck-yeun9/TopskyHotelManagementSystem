@@ -1,5 +1,5 @@
 ﻿using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
 

@@ -12,13 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="jvncorelib" Version="1.0.1.7" />
     <PackageReference Include="RestSharp" Version="112.0.0" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Common.Contract\EOM.TSHotelManagement.Common.Contract.csproj" />
-    <ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Common.Core\EOM.TSHotelManagement.Common.Core.csproj" />
   </ItemGroup>
 
 </Project>

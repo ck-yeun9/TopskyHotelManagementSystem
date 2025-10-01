@@ -50,7 +50,7 @@
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(155, 110);
             Controls.Add(spin1);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;

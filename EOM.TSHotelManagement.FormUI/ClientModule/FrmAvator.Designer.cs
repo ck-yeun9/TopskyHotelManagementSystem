@@ -80,7 +80,7 @@
             Controls.Add(ucWindowHeader1);
             Controls.Add(label4);
             Controls.Add(picWorkerPic);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmAvator";
             Resizable = false;

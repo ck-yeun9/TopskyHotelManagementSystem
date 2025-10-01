@@ -26,7 +26,7 @@
 using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
 using System.Transactions;
 
@@ -192,7 +192,7 @@ namespace EOM.TSHotelManagement.FormUI
                     FrmRoomManager.Reload("");
                     FrmRoomManager._RefreshRoomCount();
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + r.CustomerNumber + "进行了入住操作！", Common.Core.LogLevel.Normal);
+                    RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + r.CustomerNumber + "进行了入住操作！", LogLevel.Normal);
                     #endregion
                     scope.Complete();
                     this.Close();

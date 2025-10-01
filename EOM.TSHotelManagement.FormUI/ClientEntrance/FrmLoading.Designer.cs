@@ -34,9 +34,10 @@
             lblLocalSoftwareVersion = new AntdUI.Label();
             label2 = new AntdUI.Label();
             label1 = new AntdUI.Label();
-            label3 = new AntdUI.Label();
-            lblReleaseLog = new AntdUI.Input();
             fbdSavePath = new FolderBrowserDialog();
+            rtbReleaseLog = new RichTextBox();
+            btnGo = new AntdUI.Button();
+            btnExit = new AntdUI.Button();
             SuspendLayout();
             // 
             // lblTips
@@ -93,40 +94,57 @@
             label1.Text = "本地程序版本：";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // rtbReleaseLog
             // 
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Noto Sans SC", 9F);
-            label3.Location = new Point(43, 135);
-            label3.Name = "label3";
-            label3.Size = new Size(103, 23);
-            label3.TabIndex = 8;
-            label3.Text = "程序更新日志：";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
+            rtbReleaseLog.BackColor = Color.FromArgb(243, 249, 255);
+            rtbReleaseLog.BorderStyle = BorderStyle.None;
+            rtbReleaseLog.Location = new Point(12, 135);
+            rtbReleaseLog.Name = "rtbReleaseLog";
+            rtbReleaseLog.ReadOnly = true;
+            rtbReleaseLog.ScrollBars = RichTextBoxScrollBars.Vertical;
+            rtbReleaseLog.Size = new Size(311, 205);
+            rtbReleaseLog.TabIndex = 8;
+            rtbReleaseLog.Text = "";
             // 
-            // lblReleaseLog
+            // btnGo
             // 
-            lblReleaseLog.AutoScroll = true;
-            lblReleaseLog.Location = new Point(12, 164);
-            lblReleaseLog.Multiline = true;
-            lblReleaseLog.Name = "lblReleaseLog";
-            lblReleaseLog.Size = new Size(311, 341);
-            lblReleaseLog.TabIndex = 9;
+            btnGo.Font = new Font("Noto Sans SC", 12F);
+            btnGo.Location = new Point(12, 346);
+            btnGo.Name = "btnGo";
+            btnGo.Shape = AntdUI.TShape.Round;
+            btnGo.Size = new Size(111, 38);
+            btnGo.TabIndex = 35;
+            btnGo.Text = "进入系统";
+            btnGo.Type = AntdUI.TTypeMini.Primary;
+            btnGo.Click += btnGo_Click;
+            // 
+            // btnExit
+            // 
+            btnExit.Font = new Font("Noto Sans SC", 12F);
+            btnExit.Location = new Point(212, 346);
+            btnExit.Name = "btnExit";
+            btnExit.Shape = AntdUI.TShape.Round;
+            btnExit.Size = new Size(111, 38);
+            btnExit.TabIndex = 36;
+            btnExit.Text = "退出系统";
+            btnExit.Type = AntdUI.TTypeMini.Primary;
+            btnExit.Click += btnExit_Click;
             // 
             // FrmLoading
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(243, 249, 255);
-            ClientSize = new Size(335, 517);
-            Controls.Add(lblReleaseLog);
-            Controls.Add(label3);
+            ClientSize = new Size(335, 390);
+            Controls.Add(btnExit);
+            Controls.Add(btnGo);
+            Controls.Add(rtbReleaseLog);
             Controls.Add(lbInternetSoftwareVersion);
             Controls.Add(lblLocalSoftwareVersion);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lblTips);
             Font = new Font("Noto Sans SC", 9F);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
@@ -145,7 +163,9 @@
         private AntdUI.Label label2;
         private AntdUI.Label label1;
         private AntdUI.Label label3;
-        private AntdUI.Input lblReleaseLog;
         private FolderBrowserDialog fbdSavePath;
+        private RichTextBox rtbReleaseLog;
+        private AntdUI.Button btnGo;
+        private AntdUI.Button btnExit;
     }
 }

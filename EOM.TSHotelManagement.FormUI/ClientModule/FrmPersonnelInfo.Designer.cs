@@ -257,7 +257,7 @@
             Controls.Add(label1);
             Controls.Add(label2);
             Controls.Add(label16);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmPersonnelInfo";
             Resizable = false;

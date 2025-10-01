@@ -1,6 +1,7 @@
 ﻿using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
 using System.Data;
 
@@ -160,7 +161,7 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 NotificationService.ShowSuccess("修改成功！");
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改个人信息操作！", Common.Core.LogLevel.Warning);
+                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改个人信息操作！", LogLevel.Warning);
                 #endregion
                 LoadPersonnelInfo();
                 return;

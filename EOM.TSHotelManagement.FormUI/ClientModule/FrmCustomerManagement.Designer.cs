@@ -193,7 +193,7 @@
             Controls.Add(btnUpdCustomer);
             Controls.Add(btnAddCusto);
             Controls.Add(btnSerach);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
             Name = "FrmCustomerManager";
             StartPosition = FormStartPosition.CenterScreen;

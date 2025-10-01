@@ -346,7 +346,7 @@
             Controls.Add(label15);
             Controls.Add(lblDay);
             Controls.Add(label17);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmCheckOutDetail";
             Resizable = false;

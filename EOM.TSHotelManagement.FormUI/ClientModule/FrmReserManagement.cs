@@ -24,7 +24,7 @@
 using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
 using System.Transactions;
@@ -89,7 +89,7 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 NotificationService.ShowSuccess("预约成功！请在指定时间内进行登记入住");
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", Common.Core.LogLevel.Normal);
+                RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", LogLevel.Normal);
                 #endregion
                 scope.Complete();
                 FrmRoomManager.Reload("");

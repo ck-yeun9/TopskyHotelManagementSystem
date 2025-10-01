@@ -295,7 +295,7 @@
             Controls.Add(pnlMID);
             Controls.Add(picLogo);
             Controls.Add(lblSoftName);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "FrmMain";

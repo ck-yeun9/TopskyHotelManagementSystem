@@ -25,6 +25,7 @@
 using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
 
@@ -148,7 +149,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             NotificationService.ShowSuccess("修改成功");
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustomerNumber, Common.Core.LogLevel.Critical);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustomerNumber, LogLevel.Critical);
             #endregion
             this.Close();
             FrmCustomerManager.ReloadCustomer(false);
@@ -182,7 +183,7 @@ namespace EOM.TSHotelManagement.FormUI
             NotificationService.ShowSuccess("添加成功");
             FrmCustomerManager.ReloadCustomer(false);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustomerNumber, Common.Core.LogLevel.Critical);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustomerNumber, LogLevel.Critical);
             #endregion
             this.Close();
         }

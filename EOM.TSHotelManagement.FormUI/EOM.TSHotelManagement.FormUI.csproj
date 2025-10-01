@@ -102,13 +102,6 @@
 		  <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
 		  <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
 		</ProjectReference>
-		<ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Common.Contract\EOM.TSHotelManagement.Common.Contract.csproj" />
-		<ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Common.Util\EOM.TSHotelManagement.Common.Util.csproj">
-		  <Private>True</Private>
-		  <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
-		  <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
-		</ProjectReference>
-		<ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Shared\EOM.TSHotelManagement.Shared.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

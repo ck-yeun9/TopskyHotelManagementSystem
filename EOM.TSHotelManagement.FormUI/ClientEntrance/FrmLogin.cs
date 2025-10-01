@@ -178,7 +178,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                RecordHelper.Record(LocalizationHelper.GetLocalizedString($"Login error:{ex.Message}", $"登录异常:{ex.Message}"), Common.Core.LogLevel.Critical);
+                RecordHelper.Record(LocalizationHelper.GetLocalizedString($"Login error:{ex.Message}", $"登录异常:{ex.Message}"), Shared.LogLevel.Critical);
                 NotificationService.ShowError(LocalizationHelper.GetLocalizedString("The server is under maintenance, please try again later", "服务器维护中，请稍后再试！"));
             }
         }
