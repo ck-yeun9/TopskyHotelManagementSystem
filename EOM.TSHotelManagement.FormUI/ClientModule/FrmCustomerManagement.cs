@@ -22,6 +22,7 @@
  *
  */
 
+using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using jvncorelib.EntityLib;
@@ -29,7 +30,7 @@ using System.Runtime.InteropServices;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmCustomerManager : Form
+    public partial class FrmCustomerManagement : Window
     {
         public static int cm_CustoId;
         public static string cm_CustoNo;
@@ -51,7 +52,7 @@ namespace EOM.TSHotelManagement.FormUI
         public static ReloadCustomerList ReloadCustomer;
 
         private LoadingProgress _loadingProgress;
-        public FrmCustomerManager()
+        public FrmCustomerManagement()
         {
             InitializeComponent();
             _loadingProgress = new LoadingProgress();
@@ -64,7 +65,7 @@ namespace EOM.TSHotelManagement.FormUI
         TableComHelper helper = new TableComHelper();
 
         #region 用户管理界面加载事件方法
-        private void FrmCustomerManager_Load(object sender, EventArgs e)
+        private void FrmCustomerManagement_Load(object sender, EventArgs e)
         {
             this.btnPg.PageSize = 15;
             LoadCustomer();

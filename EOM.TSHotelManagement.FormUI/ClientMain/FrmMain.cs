@@ -520,12 +520,12 @@ namespace EOM.TSHotelManagement.FormUI
                     break;
                 case "客户管理":
                     pnlMID.Controls.Clear();
-                    FrmCustomerManager frmCustomerManager = new()
+                    FrmCustomerManagement frmCustomerManagement = new()
                     {
                         TopLevel = false
                     };
-                    pnlMID.Controls.Add(frmCustomerManager);
-                    frmCustomerManager.Show();
+                    pnlMID.Controls.Add(frmCustomerManagement);
+                    frmCustomerManagement.Show();
                     break;
                 case "商品消费":
                     pnlMID.Controls.Clear();

@@ -1,6 +1,6 @@
 ﻿namespace EOM.TSHotelManagement.FormUI
 {
-    partial class FrmCustomerManager
+    partial class FrmCustomerManagement
     {
         /// <summary>
         /// Required designer variable.
@@ -177,7 +177,7 @@
             divider1.Text = "右键可复制快速客户编号";
             divider1.Thickness = 1F;
             // 
-            // FrmCustomerManager
+            // FrmCustomerManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -195,10 +195,9 @@
             Controls.Add(btnSerach);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
-            Name = "FrmCustomerManager";
-            StartPosition = FormStartPosition.CenterScreen;
+            Name = "FrmCustomerManagement";
             Text = "TS酒店管理系统";
-            Load += FrmCustomerManager_Load;
+            Load += FrmCustomerManagement_Load;
             cmsCustomerAction.ResumeLayout(false);
             ResumeLayout(false);
         }

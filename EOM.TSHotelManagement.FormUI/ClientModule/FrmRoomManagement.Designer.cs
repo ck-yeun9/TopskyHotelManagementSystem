@@ -58,10 +58,10 @@
             pnlRoomInfo.Controls.Add(label3);
             pnlRoomInfo.Controls.Add(label2);
             pnlRoomInfo.Controls.Add(label1);
-            pnlRoomInfo.Location = new Point(3, 273);
+            pnlRoomInfo.Location = new Point(3, 339);
             pnlRoomInfo.Margin = new Padding(4);
             pnlRoomInfo.Name = "pnlRoomInfo";
-            pnlRoomInfo.Size = new Size(255, 346);
+            pnlRoomInfo.Size = new Size(255, 280);
             pnlRoomInfo.TabIndex = 72;
             // 
             // lblRoomState
@@ -71,7 +71,7 @@
             lblRoomState.Location = new Point(108, 173);
             lblRoomState.Margin = new Padding(4, 0, 4, 0);
             lblRoomState.Name = "lblRoomState";
-            lblRoomState.Size = new Size(12, 17);
+            lblRoomState.Size = new Size(14, 24);
             lblRoomState.TabIndex = 16;
             lblRoomState.Text = " ";
             // 
@@ -82,7 +82,7 @@
             label11.Location = new Point(11, 173);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new Size(88, 17);
+            label11.Size = new Size(90, 24);
             label11.TabIndex = 15;
             label11.Text = "房间状态：";
             // 
@@ -93,7 +93,7 @@
             lblRoomNo.Location = new Point(108, 13);
             lblRoomNo.Margin = new Padding(4, 0, 4, 0);
             lblRoomNo.Name = "lblRoomNo";
-            lblRoomNo.Size = new Size(12, 17);
+            lblRoomNo.Size = new Size(14, 24);
             lblRoomNo.TabIndex = 14;
             lblRoomNo.Text = " ";
             // 
@@ -104,7 +104,7 @@
             lblCustoName.Location = new Point(108, 53);
             lblCustoName.Margin = new Padding(4, 0, 4, 0);
             lblCustoName.Name = "lblCustoName";
-            lblCustoName.Size = new Size(12, 17);
+            lblCustoName.Size = new Size(14, 24);
             lblCustoName.TabIndex = 12;
             lblCustoName.Text = " ";
             // 
@@ -115,7 +115,7 @@
             lblRoomPosition.Location = new Point(108, 133);
             lblRoomPosition.Margin = new Padding(4, 0, 4, 0);
             lblRoomPosition.Name = "lblRoomPosition";
-            lblRoomPosition.Size = new Size(12, 17);
+            lblRoomPosition.Size = new Size(14, 24);
             lblRoomPosition.TabIndex = 10;
             lblRoomPosition.Text = " ";
             // 
@@ -126,7 +126,7 @@
             lblCheckTime.Location = new Point(108, 93);
             lblCheckTime.Margin = new Padding(4, 0, 4, 0);
             lblCheckTime.Name = "lblCheckTime";
-            lblCheckTime.Size = new Size(12, 17);
+            lblCheckTime.Size = new Size(14, 24);
             lblCheckTime.TabIndex = 9;
             lblCheckTime.Text = " ";
             // 
@@ -137,7 +137,7 @@
             label4.Location = new Point(11, 133);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(88, 17);
+            label4.Size = new Size(90, 24);
             label4.TabIndex = 3;
             label4.Text = "所在区域：";
             // 
@@ -148,7 +148,7 @@
             label3.Location = new Point(11, 93);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(88, 17);
+            label3.Size = new Size(90, 24);
             label3.TabIndex = 2;
             label3.Text = "入住时间：";
             // 
@@ -159,7 +159,7 @@
             label2.Location = new Point(11, 53);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(88, 17);
+            label2.Size = new Size(90, 24);
             label2.TabIndex = 1;
             label2.Text = "客户名字：";
             // 
@@ -170,7 +170,7 @@
             label1.Location = new Point(11, 13);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(88, 17);
+            label1.Size = new Size(90, 24);
             label1.TabIndex = 0;
             label1.Text = "房间号码：";
             // 
@@ -181,7 +181,7 @@
             muRoomState.Location = new Point(2, 4);
             muRoomState.Mode = AntdUI.TMenuMode.Vertical;
             muRoomState.Name = "muRoomState";
-            muRoomState.Size = new Size(255, 262);
+            muRoomState.Size = new Size(255, 328);
             muRoomState.TabIndex = 96;
             muRoomState.SelectChanged += muRoomState_SelectChanged;
             // 

@@ -38,7 +38,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="AppFunction\FrmCustoManager.cs" />
-    <Compile Update="AppFunction\FrmCustomerManager.cs">
+    <Compile Update="AppFunction\FrmCustomerManagement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ClientModule\FrmEditInputs.cs">

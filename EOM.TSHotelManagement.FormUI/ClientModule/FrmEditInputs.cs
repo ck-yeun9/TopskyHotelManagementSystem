@@ -97,15 +97,15 @@ namespace EOM.TSHotelManagement.FormUI
 
             if (this.Text.Equals("修改客户信息"))
             {
-                txtCustomerId.Text = FrmCustomerManager.cm_CustoNo;
-                txtCustomerName.Text = FrmCustomerManager.cm_CustoName;
-                txtCustomerAddress.Text = FrmCustomerManager.cm_CustoAddress;
-                cboCustomerType.SelectedValue = FrmCustomerManager.cm_CustoType;
-                cboGender.SelectedValue = FrmCustomerManager.cm_CustoSex;
-                cboPassportType.SelectedValue = FrmCustomerManager.cm_PassportType;
-                dtpDateOfBirth.Value = FrmCustomerManager.cm_CustoBirth;
-                txtCustomerCardID.Text = FrmCustomerManager.cm_CustoIdCardNumber;
-                txtCustomerTel.Text = FrmCustomerManager.cm_CustoTel;
+                txtCustomerId.Text = FrmCustomerManagement.cm_CustoNo;
+                txtCustomerName.Text = FrmCustomerManagement.cm_CustoName;
+                txtCustomerAddress.Text = FrmCustomerManagement.cm_CustoAddress;
+                cboCustomerType.SelectedValue = FrmCustomerManagement.cm_CustoType;
+                cboGender.SelectedValue = FrmCustomerManagement.cm_CustoSex;
+                cboPassportType.SelectedValue = FrmCustomerManagement.cm_PassportType;
+                dtpDateOfBirth.Value = FrmCustomerManagement.cm_CustoBirth;
+                txtCustomerCardID.Text = FrmCustomerManagement.cm_CustoIdCardNumber;
+                txtCustomerTel.Text = FrmCustomerManagement.cm_CustoTel;
                 btnOk.Text = "修改";
 
                 this.btnOk.Click -= new EventHandler(FrmEditInputs_ButtonOkClick);
@@ -125,7 +125,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             UpdateCustomerInputDto custo = new UpdateCustomerInputDto()
             {
-                Id = FrmCustomerManager.cm_CustoId,
+                Id = FrmCustomerManagement.cm_CustoId,
                 CustomerNumber = txtCustomerId.Text,
                 CustomerName = txtCustomerName.Text,
                 CustomerGender = Convert.ToInt32(cboGender.SelectedValue.ToString()),
@@ -152,7 +152,7 @@ namespace EOM.TSHotelManagement.FormUI
             RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustomerNumber, LogLevel.Critical);
             #endregion
             this.Close();
-            FrmCustomerManager.ReloadCustomer(false);
+            FrmCustomerManagement.ReloadCustomer(false);
         }
 
         private void FrmEditInputs_ButtonOkClick(object sender, EventArgs e)
@@ -181,7 +181,7 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             NotificationService.ShowSuccess("添加成功");
-            FrmCustomerManager.ReloadCustomer(false);
+            FrmCustomerManagement.ReloadCustomer(false);
             #region 获取添加操作日志所需的信息
             RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustomerNumber, LogLevel.Critical);
             #endregion
