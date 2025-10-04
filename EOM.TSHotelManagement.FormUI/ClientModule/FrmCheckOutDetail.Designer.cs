@@ -73,7 +73,7 @@
             label24.Font = new Font("Noto Sans SC", 14.2499981F);
             label24.Location = new Point(18, 61);
             label24.Name = "label24";
-            label24.Size = new Size(85, 19);
+            label24.Size = new Size(88, 27);
             label24.TabIndex = 172;
             label24.Text = "客户编号";
             // 
@@ -94,7 +94,7 @@
             label27.Font = new Font("Noto Sans SC", 14.2499981F);
             label27.Location = new Point(323, 113);
             label27.Name = "label27";
-            label27.Size = new Size(85, 19);
+            label27.Size = new Size(88, 27);
             label27.TabIndex = 175;
             label27.Text = "房间编号";
             // 
@@ -115,7 +115,7 @@
             label28.Font = new Font("Noto Sans SC", 14.2499981F);
             label28.Location = new Point(323, 61);
             label28.Name = "label28";
-            label28.Size = new Size(85, 19);
+            label28.Size = new Size(88, 27);
             label28.TabIndex = 174;
             label28.Text = "入住时间";
             // 
@@ -136,7 +136,7 @@
             lblChange.Font = new Font("Noto Sans SC", 11.9999981F);
             lblChange.Location = new Point(605, 445);
             lblChange.Name = "lblChange";
-            lblChange.Size = new Size(38, 17);
+            lblChange.Size = new Size(41, 24);
             lblChange.TabIndex = 167;
             lblChange.Text = "0.00";
             // 
@@ -158,7 +158,7 @@
             label25.Font = new Font("Noto Sans SC", 11.9999981F);
             label25.Location = new Point(323, 444);
             label25.Name = "label25";
-            label25.Size = new Size(88, 17);
+            label25.Size = new Size(90, 24);
             label25.TabIndex = 168;
             label25.Text = "会员折扣：";
             // 
@@ -166,11 +166,11 @@
             // 
             txtReceipts.Font = new Font("Noto Sans SC", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtReceipts.HandCursor = Cursors.IBeam;
-            txtReceipts.Location = new Point(404, 468);
+            txtReceipts.Location = new Point(404, 475);
             txtReceipts.Name = "txtReceipts";
             txtReceipts.PlaceholderText = "";
             txtReceipts.Round = true;
-            txtReceipts.Size = new Size(201, 36);
+            txtReceipts.Size = new Size(242, 36);
             txtReceipts.TabIndex = 180;
             txtReceipts.TextChanged += txtReceipts_TextChanged;
             // 
@@ -180,7 +180,7 @@
             label21.Font = new Font("Noto Sans SC", 11.9999981F);
             label21.Location = new Point(517, 445);
             label21.Name = "label21";
-            label21.Size = new Size(88, 17);
+            label21.Size = new Size(90, 24);
             label21.TabIndex = 166;
             label21.Text = "找        零：";
             // 
@@ -203,7 +203,7 @@
             lblVIP.Font = new Font("Noto Sans SC", 11.9999981F);
             lblVIP.Location = new Point(412, 444);
             lblVIP.Name = "lblVIP";
-            lblVIP.Size = new Size(72, 17);
+            lblVIP.Size = new Size(74, 24);
             lblVIP.TabIndex = 169;
             lblVIP.Text = "不  打  折";
             // 
@@ -223,7 +223,7 @@
             label29.Font = new Font("Noto Sans SC", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label29.Location = new Point(591, 61);
             label29.Name = "label29";
-            label29.Size = new Size(85, 19);
+            label29.Size = new Size(88, 27);
             label29.TabIndex = 176;
             label29.Text = "已住天数";
             // 
@@ -233,7 +233,7 @@
             lblGetReceipts.Font = new Font("Noto Sans SC", 11.9999981F);
             lblGetReceipts.Location = new Point(413, 412);
             lblGetReceipts.Name = "lblGetReceipts";
-            lblGetReceipts.Size = new Size(38, 17);
+            lblGetReceipts.Size = new Size(41, 24);
             lblGetReceipts.TabIndex = 165;
             lblGetReceipts.Text = "0.00";
             // 
@@ -243,7 +243,7 @@
             lblVIPPrice.Font = new Font("Noto Sans SC", 11.9999981F);
             lblVIPPrice.Location = new Point(605, 413);
             lblVIPPrice.Name = "lblVIPPrice";
-            lblVIPPrice.Size = new Size(38, 17);
+            lblVIPPrice.Size = new Size(41, 24);
             lblVIPPrice.TabIndex = 171;
             lblVIPPrice.Text = "0.00";
             // 
@@ -253,7 +253,7 @@
             lable00.Font = new Font("Noto Sans SC", 11.9999981F);
             lable00.Location = new Point(517, 413);
             lable00.Name = "lable00";
-            lable00.Size = new Size(88, 17);
+            lable00.Size = new Size(90, 24);
             lable00.TabIndex = 170;
             lable00.Text = "应付金额：";
             // 
@@ -263,7 +263,7 @@
             label18.Font = new Font("Noto Sans SC", 11.9999981F);
             label18.Location = new Point(323, 412);
             label18.Name = "label18";
-            label18.Size = new Size(88, 17);
+            label18.Size = new Size(90, 24);
             label18.TabIndex = 164;
             label18.Text = "消费总额：";
             // 
@@ -273,7 +273,7 @@
             label1.Font = new Font("Noto Sans SC", 14.2499981F);
             label1.Location = new Point(18, 113);
             label1.Name = "label1";
-            label1.Size = new Size(85, 19);
+            label1.Size = new Size(88, 27);
             label1.TabIndex = 173;
             label1.Text = "客户姓名";
             // 
@@ -294,7 +294,7 @@
             lblDay.Font = new Font("Noto Sans SC", 14.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblDay.Location = new Point(608, 112);
             lblDay.Name = "lblDay";
-            lblDay.Size = new Size(45, 20);
+            lblDay.Size = new Size(51, 29);
             lblDay.TabIndex = 177;
             lblDay.Text = "Null";
             // 
@@ -304,7 +304,7 @@
             label17.Font = new Font("Noto Sans SC", 11.9999981F);
             label17.Location = new Point(323, 479);
             label17.Name = "label17";
-            label17.Size = new Size(88, 17);
+            label17.Size = new Size(90, 24);
             label17.TabIndex = 163;
             label17.Text = "实收金额：";
             // 

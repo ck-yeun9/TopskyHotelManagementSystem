@@ -38,6 +38,7 @@
             rtbReleaseLog = new RichTextBox();
             btnGo = new AntdUI.Button();
             btnExit = new AntdUI.Button();
+            label4 = new AntdUI.Label();
             SuspendLayout();
             // 
             // lblTips
@@ -98,7 +99,7 @@
             // 
             rtbReleaseLog.BackColor = Color.FromArgb(243, 249, 255);
             rtbReleaseLog.BorderStyle = BorderStyle.None;
-            rtbReleaseLog.Location = new Point(12, 135);
+            rtbReleaseLog.Location = new Point(12, 167);
             rtbReleaseLog.Name = "rtbReleaseLog";
             rtbReleaseLog.ReadOnly = true;
             rtbReleaseLog.ScrollBars = RichTextBoxScrollBars.Vertical;
@@ -109,7 +110,7 @@
             // btnGo
             // 
             btnGo.Font = new Font("Noto Sans SC", 12F);
-            btnGo.Location = new Point(12, 346);
+            btnGo.Location = new Point(12, 378);
             btnGo.Name = "btnGo";
             btnGo.Shape = AntdUI.TShape.Round;
             btnGo.Size = new Size(111, 38);
@@ -121,7 +122,7 @@
             // btnExit
             // 
             btnExit.Font = new Font("Noto Sans SC", 12F);
-            btnExit.Location = new Point(212, 346);
+            btnExit.Location = new Point(212, 378);
             btnExit.Name = "btnExit";
             btnExit.Shape = AntdUI.TShape.Round;
             btnExit.Size = new Size(111, 38);
@@ -130,11 +131,23 @@
             btnExit.Type = AntdUI.TTypeMini.Primary;
             btnExit.Click += btnExit_Click;
             // 
+            // label4
+            // 
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Noto Sans SC", 9F);
+            label4.Location = new Point(43, 135);
+            label4.Name = "label4";
+            label4.Size = new Size(103, 23);
+            label4.TabIndex = 37;
+            label4.Text = "程序更新日志：";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // FrmLoading
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(243, 249, 255);
-            ClientSize = new Size(335, 390);
+            ClientSize = new Size(335, 424);
+            Controls.Add(label4);
             Controls.Add(btnExit);
             Controls.Add(btnGo);
             Controls.Add(rtbReleaseLog);
@@ -167,5 +180,6 @@
         private RichTextBox rtbReleaseLog;
         private AntdUI.Button btnGo;
         private AntdUI.Button btnExit;
+        private AntdUI.Label label4;
     }
 }

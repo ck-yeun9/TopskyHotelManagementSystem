@@ -41,15 +41,12 @@ namespace EOM.TSHotelManagement.FormUI
         ReadRoomOutputDto r = null;
 
         private static ReadSpendOutputDto spend = null;
-        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSellThing));
 
         private LoadingProgress loadingProgress;
         public FrmSellThing()
         {
             InitializeComponent();
             loadingProgress = new LoadingProgress();
-
-            ucWindowHeader1.ApplySettingsWithoutMinimize("商品消费", string.Empty, (Image)resources.GetObject("FrmSellThing.Icon")!);
         }
 
         #region 窗体加载事件

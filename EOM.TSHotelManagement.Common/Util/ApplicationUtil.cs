@@ -121,6 +121,15 @@ namespace EOM.TSHotelManagement.Common
         }
 
         /// <summary>
+        /// 获取当前软件的公司名称
+        /// </summary>
+        /// <returns></returns>
+        public static string GetApplicationCompanyName()
+        {
+            return LocalizationHelper.GetLocalizedString("Easy Open Meta", "Easy Open Meta");
+        }
+
+        /// <summary>
         /// 身份证实体类
         /// </summary>
         public class Card

@@ -58,10 +58,10 @@
             pnlRoomInfo.Controls.Add(label3);
             pnlRoomInfo.Controls.Add(label2);
             pnlRoomInfo.Controls.Add(label1);
-            pnlRoomInfo.Location = new Point(3, 339);
+            pnlRoomInfo.Location = new Point(3, 282);
             pnlRoomInfo.Margin = new Padding(4);
             pnlRoomInfo.Name = "pnlRoomInfo";
-            pnlRoomInfo.Size = new Size(255, 280);
+            pnlRoomInfo.Size = new Size(255, 337);
             pnlRoomInfo.TabIndex = 72;
             // 
             // lblRoomState
@@ -181,7 +181,7 @@
             muRoomState.Location = new Point(2, 4);
             muRoomState.Mode = AntdUI.TMenuMode.Vertical;
             muRoomState.Name = "muRoomState";
-            muRoomState.Size = new Size(255, 328);
+            muRoomState.Size = new Size(255, 271);
             muRoomState.TabIndex = 96;
             muRoomState.SelectChanged += muRoomState_SelectChanged;
             // 

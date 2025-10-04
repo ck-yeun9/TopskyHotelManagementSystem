@@ -25,6 +25,7 @@ using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Util;
 using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
@@ -36,8 +37,8 @@ namespace EOM.TSHotelManagement.FormUI
         private string GithubRepoUrl => "https://api.github.com/repos/easy-open-meta/TopskyHotelManagerSystem/releases/latest";
         private string GiteeRepoUrl => "https://gitee.com/api/v5/repos/java-and-net/TopskyHotelManagerSystem/releases/latest";
         private string GithubProxyUrl => "https://ghproxy.oscode.top";
-        private string FolderName => "TSHotelUpgradePackages";
-        private string FallbackUrl => "https://pan.gkhive.com/%E6%9C%AC%E5%9C%B0%E7%A3%81%E7%9B%98/blog_files/TS%E9%85%92%E5%BA%97%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E5%BA%93";
+        private string AppDataPath => Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+        private string FallbackUrl => "https://pan.gkhive.com/TSHotel";
 
         private ProgressBar progressBar;
 
@@ -100,8 +101,10 @@ namespace EOM.TSHotelManagement.FormUI
             lbInternetSoftwareVersion.Refresh();
             if (version.Equals(lblLocalSoftwareVersion.Text.Trim()))
             {
+                progressBar.Value = 100;
                 LoginInfo.SoftwareReleaseLog = $"{releaseBody}";
-                NotificationService.ShowSuccess("当前已是最新版本，无需更新！");
+                NotificationService.ShowSuccess(LocalizationHelper.GetLocalizedString("The current version is already the latest, no need to update!", "当前已是最新版本，无需更新！"));
+                lblTips.Text = LocalizationHelper.GetLocalizedString("The current version is already the latest, no need to update!", "当前已是最新版本，无需更新！");
                 return;
             }
 
@@ -164,7 +167,9 @@ namespace EOM.TSHotelManagement.FormUI
 
                 string selectedPath = fbdSavePath.SelectedPath;
 
-                string targetDirectory = Path.Combine(selectedPath, FolderName, tagName);
+                string targetDirectory = Path.Combine(selectedPath ?? AppDataPath,
+                    ApplicationUtil.GetApplicationCompanyName(),
+                    ApplicationUtil.GetApplicationName(), tagName);
 
                 if (!Path.Exists(targetDirectory))
                     Directory.CreateDirectory(targetDirectory);

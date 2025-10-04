@@ -50,7 +50,6 @@
             btnAdd = new AntdUI.Button();
             btnCancel = new AntdUI.Button();
             dgvRoomSell = new AntdUI.Table();
-            ucWindowHeader1 = new ucWindowHeader();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
@@ -65,9 +64,9 @@
             groupBox2.Controls.Add(txtSellName);
             groupBox2.Controls.Add(txtSellNo);
             groupBox2.Font = new Font("Noto Sans SC", 9F);
-            groupBox2.Location = new Point(617, 88);
+            groupBox2.Location = new Point(617, 57);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(452, 123);
+            groupBox2.Size = new Size(452, 120);
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             groupBox2.Text = "订购中心";
@@ -159,7 +158,7 @@
             // 
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Noto Sans SC", 12F);
-            label1.Location = new Point(45, 51);
+            label1.Location = new Point(45, 22);
             label1.Name = "label1";
             label1.Size = new Size(145, 23);
             label1.TabIndex = 26;
@@ -169,7 +168,7 @@
             // txtFind
             // 
             txtFind.Font = new Font("Noto Sans SC", 12F);
-            txtFind.Location = new Point(200, 42);
+            txtFind.Location = new Point(200, 13);
             txtFind.Name = "txtFind";
             txtFind.Round = true;
             txtFind.Size = new Size(197, 38);
@@ -178,7 +177,7 @@
             // btnFind
             // 
             btnFind.Font = new Font("Noto Sans SC", 12F);
-            btnFind.Location = new Point(403, 42);
+            btnFind.Location = new Point(403, 13);
             btnFind.Name = "btnFind";
             btnFind.Shape = AntdUI.TShape.Round;
             btnFind.Size = new Size(101, 38);
@@ -191,7 +190,7 @@
             // 
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Noto Sans SC", 12F);
-            label2.Location = new Point(518, 51);
+            label2.Location = new Point(518, 22);
             label2.Name = "label2";
             label2.Size = new Size(92, 23);
             label2.TabIndex = 29;
@@ -201,7 +200,7 @@
             // txtRoomNo
             // 
             txtRoomNo.Font = new Font("Noto Sans SC", 12F);
-            txtRoomNo.Location = new Point(617, 42);
+            txtRoomNo.Location = new Point(617, 13);
             txtRoomNo.Name = "txtRoomNo";
             txtRoomNo.Round = true;
             txtRoomNo.Size = new Size(134, 38);
@@ -212,7 +211,7 @@
             // btnCheck
             // 
             btnCheck.Font = new Font("Noto Sans SC", 12F);
-            btnCheck.Location = new Point(764, 44);
+            btnCheck.Location = new Point(764, 15);
             btnCheck.Name = "btnCheck";
             btnCheck.Shape = AntdUI.TShape.Round;
             btnCheck.Size = new Size(101, 38);
@@ -225,7 +224,7 @@
             // 
             lblState.BackColor = Color.Transparent;
             lblState.Font = new Font("Noto Sans SC", 12F);
-            lblState.Location = new Point(875, 51);
+            lblState.Location = new Point(875, 22);
             lblState.Name = "lblState";
             lblState.Size = new Size(130, 23);
             lblState.TabIndex = 32;
@@ -238,9 +237,9 @@
             dgvSellthing.Bordered = true;
             dgvSellthing.Font = new Font("Noto Sans SC", 9F);
             dgvSellthing.Gap = 12;
-            dgvSellthing.Location = new Point(4, 88);
+            dgvSellthing.Location = new Point(4, 57);
             dgvSellthing.Name = "dgvSellthing";
-            dgvSellthing.Size = new Size(487, 351);
+            dgvSellthing.Size = new Size(487, 382);
             dgvSellthing.TabIndex = 131;
             dgvSellthing.CellClick += dgvSellthing_CellClick;
             // 
@@ -258,7 +257,7 @@
             // btnAdd
             // 
             btnAdd.Font = new Font("Noto Sans SC", 12F);
-            btnAdd.Location = new Point(496, 88);
+            btnAdd.Location = new Point(496, 58);
             btnAdd.Name = "btnAdd";
             btnAdd.Shape = AntdUI.TShape.Round;
             btnAdd.Size = new Size(115, 38);
@@ -270,7 +269,7 @@
             // btnCancel
             // 
             btnCancel.Font = new Font("Noto Sans SC", 12F);
-            btnCancel.Location = new Point(496, 174);
+            btnCancel.Location = new Point(496, 144);
             btnCancel.Name = "btnCancel";
             btnCancel.Shape = AntdUI.TShape.Round;
             btnCancel.Size = new Size(115, 38);
@@ -285,25 +284,17 @@
             dgvRoomSell.Bordered = true;
             dgvRoomSell.Font = new Font("Noto Sans SC", 9F);
             dgvRoomSell.Gap = 12;
-            dgvRoomSell.Location = new Point(497, 217);
+            dgvRoomSell.Location = new Point(497, 188);
             dgvRoomSell.Name = "dgvRoomSell";
-            dgvRoomSell.Size = new Size(572, 262);
+            dgvRoomSell.Size = new Size(572, 291);
             dgvRoomSell.TabIndex = 138;
             dgvRoomSell.CellClick += dgvRoomSell_CellClick;
-            // 
-            // ucWindowHeader1
-            // 
-            ucWindowHeader1.Location = new Point(1, 1);
-            ucWindowHeader1.Name = "ucWindowHeader1";
-            ucWindowHeader1.Size = new Size(1071, 35);
-            ucWindowHeader1.TabIndex = 139;
             // 
             // FrmSellThing
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(1072, 486);
-            Controls.Add(ucWindowHeader1);
             Controls.Add(dgvRoomSell);
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);
