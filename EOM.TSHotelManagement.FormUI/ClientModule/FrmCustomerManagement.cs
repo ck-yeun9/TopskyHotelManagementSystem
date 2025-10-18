@@ -67,6 +67,7 @@ namespace EOM.TSHotelManagement.FormUI
         #region 用户管理界面加载事件方法
         private void FrmCustomerManagement_Load(object sender, EventArgs e)
         {
+            btnClear.IconSvg = UIControlIconConstant.Clear;
             this.btnPg.PageSize = 15;
             LoadCustomer();
         }
@@ -254,6 +255,13 @@ namespace EOM.TSHotelManagement.FormUI
                 frmInputs.Text = "修改客户信息";
                 frmInputs.ShowDialog();
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtCustoName.Clear();
+            txtCustoNo.Clear();
+            LoadCustomer();
         }
     }
 

@@ -52,8 +52,8 @@ namespace EOM.TSHotelManagement.FormUI
         #region 窗体加载事件
         private void FrmSellThing_Load(object sender, EventArgs e)
         {
+            btnClear.IconSvg = UIControlIconConstant.Clear;
             LoadSellThingInfo();
-
         }
         #endregion
 
@@ -442,6 +442,12 @@ namespace EOM.TSHotelManagement.FormUI
                     ConsumptionTime = Convert.ToDateTime(helper.GetValue(data, nameof(ReadSpendOutputDto.ConsumptionTime)))
                 };
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtFind.Clear();
+            LoadSellThingInfo();
         }
     }
 }

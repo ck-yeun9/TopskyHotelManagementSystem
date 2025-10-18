@@ -327,6 +327,13 @@ namespace EOM.TSHotelManagement.Common
 
             request.AddHeader("Authorization", string.Format("Bearer {0}", token));
 
+            if (LoginInfo.NeedRefreshCsrfToken)
+            {
+                CsrfTokenHelper.RefreshCsrfToken();
+            }
+
+            request.AddHeader("X-CSRF-TOKEN-HEADER", LoginInfo.CsrfToken ?? CsrfTokenHelper.RefreshCsrfToken());
+
             reponse = client.ExecutePost(request);
 
             var responseString = reponse.Content;

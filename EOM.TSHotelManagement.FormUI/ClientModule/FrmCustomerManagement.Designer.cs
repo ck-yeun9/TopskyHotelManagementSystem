@@ -42,6 +42,7 @@
             txtCustoName = new AntdUI.Input();
             txtCustoNo = new AntdUI.Input();
             divider1 = new AntdUI.Divider();
+            btnClear = new AntdUI.Button();
             cmsCustomerAction.SuspendLayout();
             SuspendLayout();
             // 
@@ -177,12 +178,22 @@
             divider1.Text = "右键可复制快速客户编号";
             divider1.Thickness = 1F;
             // 
+            // btnClear
+            // 
+            btnClear.Location = new Point(554, 444);
+            btnClear.Name = "btnClear";
+            btnClear.Radius = 16;
+            btnClear.Size = new Size(42, 42);
+            btnClear.TabIndex = 154;
+            btnClear.Click += btnClear_Click;
+            // 
             // FrmCustomerManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(1072, 490);
+            Controls.Add(btnClear);
             Controls.Add(divider1);
             Controls.Add(label1);
             Controls.Add(label2);
@@ -216,5 +227,6 @@
         private ContextMenuStrip cmsCustomerAction;
         private ToolStripMenuItem tsmiCustoNoCopy;
         private AntdUI.Divider divider1;
+        private AntdUI.Button btnClear;
     }
 }

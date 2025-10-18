@@ -3,6 +3,9 @@
     public static class ApiConstants
     {
         public const string Default_Version = "version";
+        public const string Common_GetCsrfToken = "Login/GetCsrfToken";
+        public const string Common_RefreshCsrfToken = "Login/RefreshCSRFToken";
+
         // Base URLs
         public const string Base_SelectNationAll = "Base/SelectNationAll";
         public const string Base_SelectGenderTypeAll = "Base/SelectGenderTypeAll";
