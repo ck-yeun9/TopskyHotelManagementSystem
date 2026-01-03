@@ -22,7 +22,7 @@
  *
  *模块说明：登录信息静态类(前台工作人员登入后的本地信息存储)
  */
-namespace EOM.TSHotelManagement.Common
+namespace EOM.TSHotelManagement.Shared
 {
     /// <summary>
     /// 登录信息静态类(前台工作人员登入后的本地信息存储)

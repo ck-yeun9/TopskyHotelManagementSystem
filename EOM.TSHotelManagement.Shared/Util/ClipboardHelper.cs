@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
 
-namespace EOM.TSHotelManagement.Common;
+namespace EOM.TSHotelManagement.Shared;
 public class ClipboardHelper
 {
     [DllImport("user32.dll", SetLastError = true)]

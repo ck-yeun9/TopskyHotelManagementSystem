@@ -1,4 +1,4 @@
-﻿using EOM.TSHotelManagement.Common.Contract;
+﻿using EOM.TSHotelManagement.Contract;
 using jvncorelib.EntityLib;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EOM.TSHotelManagement.Common
+namespace EOM.TSHotelManagement.Shared
 {
     public static class CsrfTokenHelper
     {

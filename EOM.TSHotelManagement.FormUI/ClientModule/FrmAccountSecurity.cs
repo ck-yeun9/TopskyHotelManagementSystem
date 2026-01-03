@@ -1,7 +1,7 @@
 ﻿using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Util;
+using EOM.TSHotelManagement.Contract;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
 
 namespace EOM.TSHotelManagement.FormUI

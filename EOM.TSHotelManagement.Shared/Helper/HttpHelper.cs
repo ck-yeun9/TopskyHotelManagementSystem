@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace EOM.TSHotelManagement.Common
+namespace EOM.TSHotelManagement.Shared
 {
     /// <summary>
     /// 文件上传帮助类

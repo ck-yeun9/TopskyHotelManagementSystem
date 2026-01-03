@@ -24,8 +24,7 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Util;
+using EOM.TSHotelManagement.Contract;
 using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
 using System.Transactions;
@@ -276,9 +275,9 @@ namespace EOM.TSHotelManagement.FormUI
             }
             if (!spend.IsNullOrEmpty())
             {
-                if (spend.ConsumptionType == SpendType.Room.Code || spend.ConsumptionType == SpendType.Other.Code)
+                if (spend.ConsumptionType == SpendTypeConstant.Room.Code || spend.ConsumptionType == SpendTypeConstant.Other.Code)
                 {
-                    NotificationService.ShowError($"此条消费记录非{SpendType.Product.Description}记录，无法删除！");
+                    NotificationService.ShowError($"此条消费记录非{SpendTypeConstant.Product.Description}记录，无法删除！");
                     return;
                 }
                 var dr = AntdUI.Modal.open(new AntdUI.Modal.Config(this, UIMessageConstant.Information, $"你确定要撤回该消费记录吗？", AntdUI.TType.Info)

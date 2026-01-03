@@ -23,7 +23,7 @@
  */
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Util;
+using EOM.TSHotelManagement.Shared;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;

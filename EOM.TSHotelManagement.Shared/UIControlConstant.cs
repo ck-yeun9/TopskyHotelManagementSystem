@@ -1,4 +1,4 @@
-﻿namespace EOM.TSHotelManagement.Common
+﻿namespace EOM.TSHotelManagement.Shared
 {
     public class UIControlConstant
     {

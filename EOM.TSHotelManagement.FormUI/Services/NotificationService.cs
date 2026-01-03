@@ -1,6 +1,6 @@
 ﻿using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Util;
+using EOM.TSHotelManagement.Shared;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -8,7 +8,7 @@ namespace EOM.TSHotelManagement.FormUI
     {
         public static void ShowSuccess(string message)
         {
-            Modal.open(new Modal.Config(null, UIMessageConstant.Success, message, TType.Success)
+            Modal.open(new Modal.Config(UIMessageConstant.Success, message, TType.Success)
             {
                 Draggable = true,
                 CancelText = null,
@@ -22,7 +22,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         public static void ShowError(string message)
         {
-            Modal.open(new Modal.Config(null, UIMessageConstant.Error, message, TType.Error)
+            Modal.open(new Modal.Config(UIMessageConstant.Error, message, TType.Error)
             {
                 Draggable = true,
                 CancelText = null,
@@ -36,7 +36,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         public static void ShowInfo(string message)
         {
-            Modal.open(new Modal.Config(null, UIMessageConstant.Information, message, TType.Info)
+            Modal.open(new Modal.Config(UIMessageConstant.Information, message, TType.Info)
             {
                 Draggable = true,
                 CancelText = null,
@@ -50,7 +50,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         public static void ShowWarning(string message)
         {
-            Modal.open(new Modal.Config(null, UIMessageConstant.Warning, message, TType.Warn)
+            Modal.open(new Modal.Config(UIMessageConstant.Warning, message, TType.Warn)
             {
                 Draggable = true,
                 CancelText = null,

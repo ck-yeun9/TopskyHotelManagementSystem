@@ -1,5 +1,5 @@
 ﻿using AntdUI;
-using EOM.TSHotelManagement.Common.Util;
+using EOM.TSHotelManagement.Common;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;

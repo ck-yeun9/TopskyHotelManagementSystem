@@ -1,6 +1,6 @@
 ﻿using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Contract;
 using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
 using System.Data;
@@ -19,12 +19,24 @@ namespace EOM.TSHotelManagement.FormUI
 
         ResponseMsg result = null;
         Dictionary<string, string> dic = null;
-        public static CreateEnergyManagementInputDto w;
-        public static decimal TotalConsumptionAmount = 0M;
+        private static CreateEnergyManagementInputDto w;
+        private static decimal totalConsumptionAmount = 0M;
+        private static decimal roomRentMoney = 0M;
+
+        public static CreateEnergyManagementInputDto W => w;
+        public static decimal TotalConsumptionAmount
+        {
+            get => totalConsumptionAmount;
+            private set => totalConsumptionAmount = value;
+        }
+        public static decimal RoomRentMoney
+        {
+            get => roomRentMoney;
+            private set => roomRentMoney = value;
+        }
 
         private void FrmCheckOutDetail_Load(object sender, EventArgs e)
         {
-            decimal sum = 0;
             CustoNo.Text = ucRoom.rm_CustoNo;
             txtRoomNo.Text = ucRoom.rm_RoomNo;
             CustoName.Text = ucRoom.co_CustoName;
@@ -64,7 +76,7 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
 
-            sum = Convert.ToDecimal(Convert.ToString(Convert.ToInt32(stayDays.Data.StayDays) * room.RoomRent));
+            RoomRentMoney = Convert.ToDecimal(Convert.ToString(Convert.ToInt32(stayDays.Data.StayDays) * room.RoomRent));
 
             lblDay.Text = Convert.ToString(Convert.ToInt32(stayDays.Data.StayDays));
 
@@ -120,27 +132,18 @@ namespace EOM.TSHotelManagement.FormUI
 
             var customerType = customerTypeResponse.Data;
 
-            //计算消费总额
-            //dic = new Dictionary<string, string>()
-            //{
-            //    { nameof(ReadSpendInputDto.RoomNumber), txtRoomNo.Text.Trim() },
-            //    { nameof(ReadSpendInputDto.CustomerNumber), CustoNo.Text.Trim() },
-            //};
-            //result = HttpHelper.Request(ApiConstants.Spend_SumConsumptionAmount, dic);
-            //var spendResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadSpendOutputDto>>(result.message);
-            //if (spendResponse.Success == false)
-            //{
-            //    NotificationService.ShowError($"{ApiConstants.Spend_SumConsumptionAmount}+接口服务异常，请提交Issue或尝试更新版本！");
-            //    return;
-            //}
-            decimal total = TotalConsumptionAmount;
-            decimal m = total + sum;
+            decimal consumptionMoney = TotalConsumptionAmount;
+            decimal roomRentMoney = RoomRentMoney;
+            decimal totalMoney = consumptionMoney + roomRentMoney;
             decimal discount = (customerType != null && customerType.Discount > 0 && customerType.Discount < 100)
-                ? customerType.Discount / 100M
-                : 1M;
-            lblGetReceipts.Text = m.ToString("#,##0.00");
-            lblVIPPrice.Text = (m * discount).ToString("#,##0.00");
-            lblVIP.Text = (discount < 1M) ? DiscountHelper.ToZheString(customerType.Discount) : "无折扣(100%)";
+                            ? customerType.Discount / 100M
+                            : 1M;
+            decimal originalAmount, discountedAmount;
+            string discountText;
+            DiscountHelper.CalculateDiscount(roomRentMoney, consumptionMoney, discount, out originalAmount, out discountedAmount, out discountText);
+            lblGetReceipts.Text = totalMoney.ToString("#,##0.00");
+            lblVIPPrice.Text = discountedAmount.ToString("#,##0.00");
+            lblVIP.Text = (discount < 1M) ? discountText : "无折扣(100%)";
         }
 
         object GetPageData(int current, int pageSize, ref int totalCount)

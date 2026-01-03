@@ -24,10 +24,9 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Util;
-using EOM.TSHotelManagement.FormUI.Properties;
+using EOM.TSHotelManagement.Contract;
 using EOM.TSHotelManagement.Shared;
+using EOM.TSHotelManagement.FormUI.Properties;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
 using System.Diagnostics;
@@ -203,13 +202,13 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             listData = response.Data.Items;
-            MenuItem menuItem = null;
+            AntdUI.MenuItem menuItem = null;
             muNavBar.Controls.Clear();
             if (!listData.IsNullOrEmpty())
             {
                 foreach (var item in listData)
                 {
-                    menuItem = new MenuItem
+                    menuItem = new AntdUI.MenuItem
                     {
                         Text = item.NavigationBarName
                     };

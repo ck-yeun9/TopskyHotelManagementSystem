@@ -24,14 +24,17 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Contract;
+using EOM.TSHotelManagement.Shared;
+using System.ComponentModel;
 
 namespace EOM.TSHotelManagement.FormUI
 {
     public partial class FrmCustomerInfo : Window
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCustomerInfo));
-        public string CustomerNumber { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string CustomerNumber { get => customerNumber; set => customerNumber = value; }
         public FrmCustomerInfo(string customerNumber)
         {
             InitializeComponent();
@@ -42,6 +45,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         Dictionary<string, string> dic = null;
         ResponseMsg result = null;
+        private string customerNumber;
 
         private void FrmSelectCustoInfo_Load(object sender, EventArgs e)
         {

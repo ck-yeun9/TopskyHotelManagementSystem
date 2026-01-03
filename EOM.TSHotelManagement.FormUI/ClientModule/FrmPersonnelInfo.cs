@@ -1,9 +1,9 @@
 ﻿using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Shared;
+using EOM.TSHotelManagement.Contract;
 using jvncorelib.EntityLib;
 using System.Data;
+using EOM.TSHotelManagement.Shared;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -35,12 +35,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             cboEmployeeNation.Items.AddRange(nations.Data.Items.Select(item => new AntdUI.SelectItem(item.NationName, item.NationNumber)).ToArray());
             //加载性别信息
-            dic = new Dictionary<string, string>
-            {
-                { nameof(ReadGenderTypeInputDto.IsDelete) , "0" },
-                { nameof(ReadGenderTypeInputDto.IgnorePaging) , "true" }
-            };
-            result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
+            result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll);
             var genderTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
             if (genderTypes.Success == false)
             {

@@ -23,11 +23,11 @@
  */
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Shared;
+using EOM.TSHotelManagement.Contract;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
 using System.Transactions;
+using EOM.TSHotelManagement.Shared;
 
 namespace EOM.TSHotelManagement.FormUI
 {

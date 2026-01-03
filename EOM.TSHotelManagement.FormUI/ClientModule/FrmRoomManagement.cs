@@ -24,10 +24,10 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Contract;
 using EOM.TSHotelManagement.FormUI.Properties;
-using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
+using EOM.TSHotelManagement.Shared;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -180,12 +180,12 @@ namespace EOM.TSHotelManagement.FormUI
                 Description = new EnumHelper().GetEnumDescription(e)
             })
             .ToList();
-            MenuItem? menuItem = null;
+            AntdUI.MenuItem? menuItem = null;
             if (!stateList.IsNullOrEmpty())
             {
                 foreach (var item in stateList)
                 {
-                    menuItem = new MenuItem
+                    menuItem = new AntdUI.MenuItem
                     {
                         Text = item.Description + GetRoomCountText(item.Name),
                         ID = item.Id.ToString(),
@@ -339,8 +339,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 room = new ucRoom(this);
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName ?? "      ");
-                room.romRoomInfo = romsty[i];
-                room.romCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
+                room.RomRoomInfo = romsty[i];
+                room.RomCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
                 flpRoom.Controls.Add(room);
             }
             lblRoomNo.Text = "";
@@ -372,8 +372,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 room = new ucRoom(this);
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName);
-                room.romRoomInfo = romsty[i];
-                room.romCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
+                room.RomRoomInfo = romsty[i];
+                room.RomCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
                 flpRoom.Controls.Add(room);
             }
             lblRoomNo.Text = "";

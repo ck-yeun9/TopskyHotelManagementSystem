@@ -1,11 +1,11 @@
-﻿using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Util;
+﻿using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Contract;
 using jvncorelib.EntityLib;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace EOM.TSHotelManagement.Common
+namespace EOM.TSHotelManagement.Shared
 {
     /// <summary>
     /// 静态工具
