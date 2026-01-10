@@ -22,7 +22,7 @@
  *
  *模块说明：登录信息静态类(前台工作人员登入后的本地信息存储)
  */
-namespace EOM.TSHotelManagement.Common
+namespace EOM.TSHotelManagement.Shared
 {
     /// <summary>
     /// 登录信息静态类(前台工作人员登入后的本地信息存储)
@@ -58,6 +58,16 @@ namespace EOM.TSHotelManagement.Common
         /// 存储当前用户Token
         /// </summary>
         public static string UserToken = "";
+
+        /// <summary>
+        /// 存储当前用户CSRF-Token
+        /// </summary>
+        public static string? CsrfToken = null;
+
+        /// <summary>
+        /// 存储当前用户CSRF-Token是否需要刷新标记
+        /// </summary>
+        public static bool NeedRefreshCsrfToken = false;
 
         /// <summary>
         /// 存储当前用户密码

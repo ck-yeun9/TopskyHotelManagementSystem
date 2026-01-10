@@ -24,8 +24,8 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Util;
+using EOM.TSHotelManagement.Contract;
+using EOM.TSHotelManagement.Shared;
 using EOM.TSHotelManagement.FormUI.Properties;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
@@ -56,7 +56,7 @@ namespace EOM.TSHotelManagement.FormUI
             // 接受Form1对象
             this.returnForm1 = F1;
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "版本登入了系统！", Common.Core.LogLevel.Critical);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "版本登入了系统！", LogLevel.Critical);
             #endregion
             Stop = StopUseExit;
             Start = StartUseExit;
@@ -202,13 +202,13 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             listData = response.Data.Items;
-            MenuItem menuItem = null;
+            AntdUI.MenuItem menuItem = null;
             muNavBar.Controls.Clear();
             if (!listData.IsNullOrEmpty())
             {
                 foreach (var item in listData)
                 {
-                    menuItem = new MenuItem
+                    menuItem = new AntdUI.MenuItem
                     {
                         Text = item.NavigationBarName
                     };
@@ -236,8 +236,8 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
         }
 
-        AntdUI.IContextMenuStripItem[] menulist = new AntdUI.IContextMenuStripItem[]
-        {
+        AntdUI.IContextMenuStripItem[] menulist =
+        [
             new AntdUI.ContextMenuStripItem(UIControlConstant.ChangeAccount).SetIcon(UIControlIconConstant.ChangeAccount),
             new AntdUI.ContextMenuStripItem(UIControlConstant.PersonnalCenter).SetIcon(UIControlIconConstant.PersonnalCenter).SetSub(
                     new AntdUI.ContextMenuStripItem(UIControlConstant.PersonnalInformation).SetIcon(UIControlIconConstant.PersonnalInformation),
@@ -251,7 +251,7 @@ namespace EOM.TSHotelManagement.FormUI
                         ),
             new AntdUI.ContextMenuStripItem(UIControlConstant.About).SetIcon(UIControlIconConstant.About),
             new AntdUI.ContextMenuStripItem(UIControlConstant.ExitSystem).SetIcon(UIControlIconConstant.Exit)
-        };
+        ];
 
         #region 窗体加载事件方法
         private void FrmMain_Load(object sender, EventArgs e)
@@ -519,12 +519,12 @@ namespace EOM.TSHotelManagement.FormUI
                     break;
                 case "客户管理":
                     pnlMID.Controls.Clear();
-                    FrmCustomerManager frmCustomerManager = new()
+                    FrmCustomerManagement frmCustomerManagement = new()
                     {
                         TopLevel = false
                     };
-                    pnlMID.Controls.Add(frmCustomerManager);
-                    frmCustomerManager.Show();
+                    pnlMID.Controls.Add(frmCustomerManagement);
+                    frmCustomerManagement.Show();
                     break;
                 case "商品消费":
                     pnlMID.Controls.Clear();

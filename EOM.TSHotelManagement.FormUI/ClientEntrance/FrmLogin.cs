@@ -24,8 +24,8 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Util;
+using EOM.TSHotelManagement.Contract;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.EncryptorLib;
 using jvncorelib.EntityLib;
 
@@ -128,7 +128,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 if (CheckInput())
                 {
-                    var worker = new ReadEmployeeInputDto() { EmployeeId = txtAccount.Text.Trim(), EmailAddress = txtAccount.Text.Trim(), Password = txtWorkerPwd.Text.Trim() };
+                    var worker = new ReadEmployeeInputDto() { EmployeeId = txtAccount.Text.Trim(), EmailAddress = txtAccount.Text.Trim(), Password = new EncryptLib().Encryption(txtWorkerPwd.Text.Trim(), EncryptionLevel.Enhanced) };
 
                     result = HttpHelper.Request(ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd, worker.ModelToJson());
 
@@ -178,7 +178,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                RecordHelper.Record(LocalizationHelper.GetLocalizedString($"Login error:{ex.Message}", $"登录异常:{ex.Message}"), Common.Core.LogLevel.Critical);
+                RecordHelper.Record(LocalizationHelper.GetLocalizedString($"Login error:{ex.Message}", $"登录异常:{ex.Message}"), Common.LogLevel.Critical);
                 NotificationService.ShowError(LocalizationHelper.GetLocalizedString("The server is under maintenance, please try again later", "服务器维护中，请稍后再试！"));
             }
         }

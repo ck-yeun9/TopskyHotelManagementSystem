@@ -1,12 +1,12 @@
 ﻿using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Util;
+using EOM.TSHotelManagement.Contract;
 using EOM.TSHotelManagement.FormUI.Properties;
 using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -59,8 +59,10 @@ namespace EOM.TSHotelManagement.FormUI
 
         #region 实例化房态图的房间信息
         public string romTypeName;
-        public ReadRoomOutputDto romRoomInfo { get; set; }
-        public ReadCustomerOutputDto romCustoInfo { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public ReadRoomOutputDto RomRoomInfo { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public ReadCustomerOutputDto RomCustoInfo { get; set; }
         #endregion
 
         private void btnRoom_Click(object sender, EventArgs e)
@@ -131,15 +133,15 @@ namespace EOM.TSHotelManagement.FormUI
         private const int GWL_EXSTYLE = (-20);
         [DllImport("user32", EntryPoint = "SetWindowLong")]
         private static extern uint SetWindowLong(
-       IntPtr hwnd,
-       int nIndex,
-       uint dwNewLong
-       );
+           IntPtr hwnd,
+           int nIndex,
+           uint dwNewLong
+           );
         [DllImport("user32", EntryPoint = "GetWindowLong")]
         private static extern uint GetWindowLong(
-       IntPtr hwnd,
-       int nIndex
-       );
+           IntPtr hwnd,
+           int nIndex
+           );
         /// <summary>
         /// 使窗口有鼠标穿透功能
         /// </summary>
@@ -164,13 +166,13 @@ namespace EOM.TSHotelManagement.FormUI
 
         public void LoadRoomInfo()
         {
-            co_RoomNo = romRoomInfo.RoomNumber;
-            co_CustoNo = romCustoInfo.CustomerNumber;
-            co_CustoName = romCustoInfo.CustomerName;
-            romTypeName = romRoomInfo.RoomName;
-            co_CheckTime = romRoomInfo.LastCheckInTime;
-            co_RoomPosition = romRoomInfo.RoomLocation;
-            co_RoomState = romRoomInfo.RoomState;
+            co_RoomNo = RomRoomInfo.RoomNumber;
+            co_CustoNo = RomCustoInfo.CustomerNumber;
+            co_CustoName = RomCustoInfo.CustomerName;
+            romTypeName = RomRoomInfo.RoomName;
+            co_CheckTime = RomRoomInfo.LastCheckInTime;
+            co_RoomPosition = RomRoomInfo.RoomLocation;
+            co_RoomState = RomRoomInfo.RoomState;
 
         }
 
@@ -180,33 +182,33 @@ namespace EOM.TSHotelManagement.FormUI
         {
             this.CanPenetrate();
             this.Region = new Region(GetRoundRectPath(new RectangleF(0, 0, this.Width, this.Height), 6f));
-            if (romCustoInfo != null)
+            if (RomCustoInfo != null)
             {
-                us_CustoNo = romCustoInfo.CustomerNumber;
-                us_CustoName = romCustoInfo.CustomerName;
-                us_CustoSex = romCustoInfo.CustomerGender == 1 ? "男" : "女";
-                us_CustoTel = romCustoInfo.CustomerPhoneNumber;
-                us_CustoID = romCustoInfo.IdCardNumber;
-                us_CustoBirthday = romCustoInfo.DateOfBirth == default ? "" : Convert.ToDateTime(romCustoInfo.DateOfBirth).ToString();
-                us_CustoPassportType = Convert.ToInt32(romCustoInfo.PassportId);
-                us_CustoType = romCustoInfo.CustomerType;
-                us_CustoAddress = romCustoInfo.CustomerAddress;
+                us_CustoNo = RomCustoInfo.CustomerNumber;
+                us_CustoName = RomCustoInfo.CustomerName;
+                us_CustoSex = RomCustoInfo.CustomerGender == 1 ? "男" : "女";
+                us_CustoTel = RomCustoInfo.CustomerPhoneNumber;
+                us_CustoID = RomCustoInfo.IdCardNumber;
+                us_CustoBirthday = RomCustoInfo.DateOfBirth == default ? "" : Convert.ToDateTime(RomCustoInfo.DateOfBirth).ToString();
+                us_CustoPassportType = Convert.ToInt32(RomCustoInfo.PassportId);
+                us_CustoType = RomCustoInfo.CustomerType;
+                us_CustoAddress = RomCustoInfo.CustomerAddress;
             }
-            switch (romRoomInfo.RoomStateId)
+            switch (RomRoomInfo.RoomStateId)
             {
-                case (int)Common.Core.RoomState.Vacant:
+                case (int)Common.RoomState.Vacant:
                     btnRoom.BackgroundImage = Resources.可住状态;
                     break;
-                case (int)Common.Core.RoomState.Occupied:
+                case (int)Common.RoomState.Occupied:
                     btnRoom.BackgroundImage = Resources.已住状态;
                     break;
-                case (int)Common.Core.RoomState.Maintenance:
+                case (int)Common.RoomState.Maintenance:
                     btnRoom.BackgroundImage = Resources.维修状态;
                     break;
-                case (int)Common.Core.RoomState.Dirty:
+                case (int)Common.RoomState.Dirty:
                     btnRoom.BackgroundImage = Resources.脏房状态;
                     break;
-                case (int)Common.Core.RoomState.Reserved:
+                case (int)Common.RoomState.Reserved:
                     btnRoom.BackgroundImage = Resources.预约状态;
                     break;
             }
@@ -222,15 +224,15 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void tsmiCheckIn_Click(object sender, EventArgs e)
         {
-            if (romCustoInfo != null && romRoomInfo != null)
+            if (RomCustoInfo != null && RomRoomInfo != null)
             {
-                rm_CustoNo = romCustoInfo.CustomerNumber;
-                rm_RoomNo = romRoomInfo.RoomNumber;
-                rm_RoomType = romRoomInfo.RoomName;
-                rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomRent).ToString();
-                if (r.RoomStateId == new EnumHelper().GetEnumValue(Common.Core.RoomState.Reserved))
+                rm_CustoNo = RomCustoInfo.CustomerNumber;
+                rm_RoomNo = RomRoomInfo.RoomNumber;
+                rm_RoomType = RomRoomInfo.RoomName;
+                rm_RoomMoney = Convert.ToDecimal(RomRoomInfo.RoomRent).ToString();
+                if (r.RoomStateId == new EnumHelper().GetEnumValue(Common.RoomState.Reserved))
                 {
-                    rm_RoomStateId = (int)Common.Core.RoomState.Reserved;
+                    rm_RoomStateId = (int)Common.RoomState.Reserved;
                     NotificationService.ShowInfo("欢迎入住，请先注册客户信息！");
                     FrmReserList frm = new FrmReserList();
                     frm.ShowDialog();
@@ -251,10 +253,10 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void tsmiCheckOut_Click(object sender, EventArgs e)
         {
-            rm_CustoNo = romRoomInfo.CustomerNumber;
-            co_CustoName = romCustoInfo.CustomerName;
-            rm_RoomNo = romRoomInfo.RoomNumber;
-            rm_RoomType = romRoomInfo.RoomName;
+            rm_CustoNo = RomRoomInfo.CustomerNumber;
+            co_CustoName = RomCustoInfo.CustomerName;
+            rm_RoomNo = RomRoomInfo.RoomNumber;
+            rm_RoomType = RomRoomInfo.RoomName;
             FrmCheckOutDetail frm = new FrmCheckOutDetail();
             frm.ShowDialog();
         }
@@ -264,18 +266,18 @@ namespace EOM.TSHotelManagement.FormUI
         public static string? RoomState;
         private void tsmiChangeRoom_Click(object sender, EventArgs e)
         {
-            if (romCustoInfo != null && romRoomInfo != null)
+            if (RomCustoInfo != null && RomRoomInfo != null)
             {
-                var dr = AntdUI.Modal.open(new AntdUI.Modal.Config(null, UIMessageConstant.Information, "是否要进行房间更换？", AntdUI.TType.Info)
+                var dr = AntdUI.Modal.open(new Modal.Config(UIMessageConstant.Information, "是否要进行房间更换？", AntdUI.TType.Info)
                 {
                     CancelText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_No, UIMessageConstant.Chs_No),
                     OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Yes, UIMessageConstant.Chs_Yes)
                 });
                 if (dr == DialogResult.OK)
                 {
-                    RoomNo = romRoomInfo.RoomNumber;
-                    CustoNo = romCustoInfo.CustomerNumber;
-                    RoomState = romRoomInfo.RoomState;
+                    RoomNo = RomRoomInfo.RoomNumber;
+                    CustoNo = RomCustoInfo.CustomerNumber;
+                    RoomState = RomRoomInfo.RoomState;
                     FrmChangeRoom frm = new FrmChangeRoom();
                     frm.ShowDialog();
                 }
@@ -289,15 +291,15 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void tsmiSelectUserInfo_Click(object sender, EventArgs e)
         {
-            FrmCustomerInfo frm = new FrmCustomerInfo(romCustoInfo.CustomerNumber);
+            FrmCustomerInfo frm = new FrmCustomerInfo(RomCustoInfo.CustomerNumber);
             frm.ShowDialog();
         }
 
         private void tsmiChangeState_Click(object sender, EventArgs e)
         {
-            if (r.RoomStateId == (int)Common.Core.RoomState.Reserved)
+            if (r.RoomStateId == (int)Common.RoomState.Reserved)
             {
-                var dr = AntdUI.Modal.open(new AntdUI.Modal.Config(null, UIMessageConstant.Warning, "当前房间已被预约，确认更改状态后将会删除原本预约状态及信息，你确定吗？", AntdUI.TType.Warn)
+                var dr = AntdUI.Modal.open(new AntdUI.Modal.Config(UIMessageConstant.Warning, "当前房间已被预约，确认更改状态后将会删除原本预约状态及信息，你确定吗？", AntdUI.TType.Warn)
                 {
                     CancelText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_No, UIMessageConstant.Chs_No),
                     OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Yes, UIMessageConstant.Chs_Yes)
@@ -331,10 +333,10 @@ namespace EOM.TSHotelManagement.FormUI
                     }
                 }
             }
-            if (romCustoInfo != null && romRoomInfo != null)
+            if (RomCustoInfo != null && RomRoomInfo != null)
             {
-                rm_RoomStateId = romRoomInfo.RoomStateId;
-                rm_RoomNo = romRoomInfo.RoomNumber;
+                rm_RoomStateId = RomRoomInfo.RoomStateId;
+                rm_RoomNo = RomRoomInfo.RoomNumber;
                 FrmRoomStateManager frsm = new FrmRoomStateManager();
                 frsm.ShowDialog();
             }
@@ -395,7 +397,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 switch (r.RoomStateId)
                 {
-                    case (int)Common.Core.RoomState.Vacant:
+                    case (int)Common.RoomState.Vacant:
                         item.Enabled = item.Text switch
                         {
                             UIControlConstant.CheckInRoom => true,
@@ -407,7 +409,7 @@ namespace EOM.TSHotelManagement.FormUI
                             _ => item.Enabled
                         };
                         break;
-                    case (int)Common.Core.RoomState.Occupied:
+                    case (int)Common.RoomState.Occupied:
                         item.Enabled = item.Text switch
                         {
                             UIControlConstant.CheckInRoom => false,
@@ -419,8 +421,8 @@ namespace EOM.TSHotelManagement.FormUI
                             _ => item.Enabled
                         };
                         break;
-                    case (int)Common.Core.RoomState.Maintenance:
-                    case (int)Common.Core.RoomState.Dirty:
+                    case (int)Common.RoomState.Maintenance:
+                    case (int)Common.RoomState.Dirty:
                         item.Enabled = item.Text switch
                         {
                             UIControlConstant.CheckInRoom => false,

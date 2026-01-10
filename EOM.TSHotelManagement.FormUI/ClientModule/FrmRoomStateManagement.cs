@@ -24,8 +24,7 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Contract;
 using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
 
@@ -82,7 +81,7 @@ namespace EOM.TSHotelManagement.FormUI
                         return;
                     }
                     NotificationService.ShowSuccess("房间" + txtRoomNo.Text + "成功修改为" + cboRoomState.Text);
-                    FrmRoomManager.Reload("");
+                    FrmRoomManager.Reload(0);
                     FrmRoomManager._RefreshRoomCount();
                     this.Close();
                     break;

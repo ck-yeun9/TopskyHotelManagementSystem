@@ -1,5 +1,5 @@
 ﻿using AntdUI;
-using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.EncryptorLib;
 
 namespace EOM.TSHotelManagement.FormUI

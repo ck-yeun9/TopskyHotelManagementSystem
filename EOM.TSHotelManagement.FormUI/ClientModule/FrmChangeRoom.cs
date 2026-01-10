@@ -24,7 +24,8 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Contract;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
 
 namespace EOM.TSHotelManagement.FormUI
@@ -81,10 +82,10 @@ namespace EOM.TSHotelManagement.FormUI
 
                 #endregion
 
-                FrmRoomManager.Reload("");
+                FrmRoomManager.Reload(0);
                 FrmRoomManager._RefreshRoomCount();
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + transferRoom.DataChgDate + "位于" + LoginInfo.SoftwareVersion + "执行：" + transferRoom.CustomerNumber + "于" + transferRoom.DataChgDate + "进行了换房！", Common.Core.LogLevel.Warning);
+                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + transferRoom.DataChgDate + "位于" + LoginInfo.SoftwareVersion + "执行：" + transferRoom.CustomerNumber + "于" + transferRoom.DataChgDate + "进行了换房！", LogLevel.Warning);
                 #endregion
                 NotificationService.ShowSuccess("转房成功");
                 this.Close();

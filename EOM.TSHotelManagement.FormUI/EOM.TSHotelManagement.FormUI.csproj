@@ -6,12 +6,13 @@
 	  <SelfContained>true</SelfContained>
 	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	  <OutputType>WinExe</OutputType>
-	  <TargetFramework>net8.0-windows</TargetFramework>
+	  <TargetFramework>net10.0-windows</TargetFramework>
 	  <Nullable>enable</Nullable>
 	  <UseWindowsForms>true</UseWindowsForms>
 	  <ImplicitUsings>enable</ImplicitUsings>
 	  <ForceDesignerDPIUnaware>true</ForceDesignerDPIUnaware>
-	  <Version>2.8.6.0</Version>
+	  <Version>2.10.7.0</Version>
+	  <ProductVersion>2.10.7.0</ProductVersion>
 	  <StartupObject>EOM.TSHotelManagement.FormUI.Program</StartupObject>
 	  <PlatformTarget>x64</PlatformTarget>
 	  <AssemblyName>TS酒店管理系统</AssemblyName>
@@ -20,8 +21,8 @@
 	  <FodyDisabled>false</FodyDisabled>
 	  <ApplicationManifest>app.manifest</ApplicationManifest>
 	  <Platforms>x64</Platforms>
-  </PropertyGroup>
-  <ItemGroup>
+	</PropertyGroup>
+	<ItemGroup>
     <Compile Update="ClientModule\FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -38,7 +39,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="AppFunction\FrmCustoManager.cs" />
-    <Compile Update="AppFunction\FrmCustomerManager.cs">
+    <Compile Update="AppFunction\FrmCustomerManagement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ClientModule\FrmEditInputs.cs">
@@ -96,26 +97,11 @@
 	<Content Include="bin\Debug\*.xml" CopyToOutputDirectory="PreserveNewest" />
 	<Content Include="bin\Release\*.xml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\EOM.TSHotelManagement.Common\EOM.TSHotelManagement.Common.csproj">
-		  <Private>True</Private>
-		  <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
-		  <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
-		</ProjectReference>
-		<ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Common.Contract\EOM.TSHotelManagement.Common.Contract.csproj" />
-		<ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Common.Util\EOM.TSHotelManagement.Common.Util.csproj">
-		  <Private>True</Private>
-		  <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
-		  <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
-		</ProjectReference>
-		<ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Shared\EOM.TSHotelManagement.Shared.csproj" />
-	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="antdui" Version="2.1.1" />
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="antdui" Version="2.2.7" />
 		<PackageReference Include="Costura.Fody" Version="6.0.0" PrivateAssets="All" />
-		<PackageReference Include="Fody" Version="6.9.2" PrivateAssets="All" />
+		<PackageReference Include="Fody" Version="6.9.3" PrivateAssets="All" />
 	</ItemGroup>
 	<ItemGroup>
 		<FodyWeavers Include="Costura" />
@@ -123,7 +109,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="FodyWeavers.xml" />
-	  <None Remove="Resources\EOM.TSHotelManagement.Common.Contract.xml" />
+	  <None Remove="TableComponent\ContractXml\EOM.TSHotelManagement.Contract.xml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Include="Logo\bitbug_favicon (1).ico" />
@@ -134,9 +120,12 @@
 	  </Content>
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\EOM.TSHotelManagement.Common.Contract.xml">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <EmbeddedResource Include="TableComponent\ContractXml\EOM.TSHotelManagement.Contract.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\EOM.TSHotelManagement.Shared\EOM.TSHotelManagement.Shared.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="Properties\Resources.resx">

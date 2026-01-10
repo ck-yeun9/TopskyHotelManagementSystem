@@ -151,6 +151,11 @@
             网关超时（上游服务响应超时）
             </summary>
         </member>
+        <member name="P:EOM.TSHotelManagement.Contract.CsrfTokenDto.Token">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:EOM.TSHotelManagement.Contract.ListInputDto.Page">
             <summary>
             页数
@@ -199,6 +204,11 @@
         <member name="P:EOM.TSHotelManagement.Contract.MenuDto.Icon">
             <summary>
             图标
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Contract.MenuDto.Permissions">
+            <summary>
+            该菜单下允许的权限编码集合（如：department.create / department.update 等）
             </summary>
         </member>
         <member name="P:EOM.TSHotelManagement.Contract.MenuDto.Children">
@@ -303,82 +313,12 @@
         </member>
         <member name="P:EOM.TSHotelManagement.Contract.ReadAdministratorOutputDto.IsSuperAdminDescription">
             <summary>
-            是否为超级管理员描述 (Is Super Administrator Description)
+            锟角凤拷为锟斤拷锟斤拷锟斤拷锟斤拷员锟斤拷锟斤拷 (Is Super Administrator Description)
             </summary>
         </member>
         <member name="P:EOM.TSHotelManagement.Contract.ReadAdministratorOutputDto.TypeName">
             <summary>
-            管理员类型名称 (Administrator Type Name)
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.CreateAppointmentNoticeTypeInputDto.NoticeTypeNumber">
-            <summary>
-            公告类型编号 (AppointmentNotice Type Number)
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.CreateAppointmentNoticeTypeInputDto.NoticeTypeName">
-            <summary>
-            公告类型名称 (AppointmentNotice Type Name)
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.DeleteAppointmentNoticeTypeInputDto.NoticeTypeNumber">
-            <summary>
-            公告类型编号 (AppointmentNotice Type Number)
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadAppointmentNoticeTypeInputDto.NoticeTypeNumber">
-            <summary>
-            公告类型编号 (AppointmentNotice Type Number)
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadAppointmentNoticeTypeInputDto.NoticeTypeName">
-            <summary>
-            公告类型名称 (AppointmentNotice Type Name)
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadAppointmentNoticeTypeOutputDto.NoticeTypeNumber">
-            <summary>
-            公告类型编号 (AppointmentNotice Type Number)
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadAppointmentNoticeTypeOutputDto.NoticeTypeName">
-            <summary>
-            公告类型名称 (AppointmentNotice Type Name)
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadAppointmentNoticeTypeOutputDto.IsDelete">
-            <summary>
-            删除标识
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadAppointmentNoticeTypeOutputDto.DataInsUsr">
-            <summary>
-            资料创建人
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadAppointmentNoticeTypeOutputDto.DataInsDate">
-            <summary>
-            资料创建时间
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadAppointmentNoticeTypeOutputDto.DataChgUsr">
-            <summary>
-            资料更新人
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadAppointmentNoticeTypeOutputDto.DataChgDate">
-            <summary>
-            资料更新时间
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.UpdateAppointmentNoticeTypeInputDto.NoticeTypeNumber">
-            <summary>
-            公告类型编号 (AppointmentNotice Type Number)
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.UpdateAppointmentNoticeTypeInputDto.NoticeTypeName">
-            <summary>
-            公告类型名称 (AppointmentNotice Type Name)
+            锟斤拷锟斤拷员锟斤拷锟斤拷锟斤拷锟斤拷 (Administrator Type Name)
             </summary>
         </member>
         <member name="T:EOM.TSHotelManagement.Contract.Menu.MenuViewModel">
@@ -461,82 +401,19 @@
             系统管理
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Contract.CreateRoleInputDto.RoleNumber">
-             <summary>
-             备  注:角色编码
-             默认值:
+        <member name="T:EOM.TSHotelManagement.Contract.SystemManagement.Dto.Role.AssignRoleUsersInputDto">
+            <summary>
+            为角色分配管理员（全量覆盖式）
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Contract.CreateRoleInputDto.RoleName">
-             <summary>
-             备  注:角色名字
-             默认值:
+        <member name="P:EOM.TSHotelManagement.Contract.SystemManagement.Dto.Role.AssignRoleUsersInputDto.RoleNumber">
+            <summary>
+            角色编码
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Contract.CreateRoleInputDto.RoleDescription">
-             <summary>
-             备  注:角色描述
-             默认值:
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.DeleteRoleInputDto.RoleNumber">
-             <summary>
-             备  注:角色编码
-             默认值:
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadRoleInputDto.RoleNumber">
-             <summary>
-             备  注:角色编码
-             默认值:
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadRoleInputDto.RoleName">
-             <summary>
-             备  注:角色名字
-             默认值:
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadRoleInputDto.RoleDescription">
-             <summary>
-             备  注:角色描述
-             默认值:
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadRoleOutputDto.RoleNumber">
-             <summary>
-             备  注:角色编码
-             默认值:
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadRoleOutputDto.RoleName">
-             <summary>
-             备  注:角色名字
-             默认值:
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.ReadRoleOutputDto.RoleDescription">
-             <summary>
-             备  注:角色描述
-             默认值:
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.UpdateRoleInputDto.RoleNumber">
-             <summary>
-             备  注:角色编码
-             默认值:
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.UpdateRoleInputDto.RoleName">
-             <summary>
-             备  注:角色名字
-             默认值:
-            </summary>
-        </member>
-        <member name="P:EOM.TSHotelManagement.Contract.UpdateRoleInputDto.RoleDescription">
-             <summary>
-             备  注:角色描述
-             默认值:
+        <member name="P:EOM.TSHotelManagement.Contract.SystemManagement.Dto.Role.AssignRoleUsersInputDto.UserNumbers">
+            <summary>
+            管理员用户编码集合（Administrator.Number）
             </summary>
         </member>
         <member name="P:EOM.TSHotelManagement.Contract.ReadOperationLogOutputDto.RequestPath">

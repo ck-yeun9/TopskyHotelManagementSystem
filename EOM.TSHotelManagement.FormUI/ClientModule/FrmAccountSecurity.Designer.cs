@@ -140,12 +140,12 @@
             Controls.Add(avatar1);
             Controls.Add(btnUpdatePassword);
             Controls.Add(txtNewPassword);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmAccountSecurity";
             Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmAccountSecurity";
+            Text = "账号安全";
             Load += FrmAccountSecurity_Load;
             ResumeLayout(false);
         }

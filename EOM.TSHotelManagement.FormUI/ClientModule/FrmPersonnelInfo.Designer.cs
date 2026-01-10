@@ -47,15 +47,17 @@
             cboEmployeePosition = new AntdUI.Select();
             cboEmployeeDepartment = new AntdUI.Select();
             ucWindowHeader1 = new ucWindowHeader();
+            txtEmailAddress = new AntdUI.Input();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Noto Sans SC", 14.2499981F);
-            label7.Location = new Point(18, 214);
+            label7.Location = new Point(18, 206);
             label7.Name = "label7";
-            label7.Size = new Size(85, 19);
+            label7.Size = new Size(88, 27);
             label7.TabIndex = 148;
             label7.Text = "联系方式";
             // 
@@ -63,9 +65,9 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Noto Sans SC", 14.2499981F);
-            label5.Location = new Point(329, 112);
+            label5.Location = new Point(329, 111);
             label5.Name = "label5";
-            label5.Size = new Size(85, 19);
+            label5.Size = new Size(88, 27);
             label5.TabIndex = 136;
             label5.Text = "现任职位";
             // 
@@ -73,9 +75,9 @@
             // 
             label32.AutoSize = true;
             label32.Font = new Font("Noto Sans SC", 14.2499981F);
-            label32.Location = new Point(18, 61);
+            label32.Location = new Point(18, 59);
             label32.Name = "label32";
-            label32.Size = new Size(85, 19);
+            label32.Size = new Size(88, 27);
             label32.TabIndex = 132;
             label32.Text = "员工编号";
             // 
@@ -83,9 +85,9 @@
             // 
             label31.AutoSize = true;
             label31.Font = new Font("Noto Sans SC", 14.2499981F);
-            label31.Location = new Point(18, 112);
+            label31.Location = new Point(18, 108);
             label31.Name = "label31";
-            label31.Size = new Size(85, 19);
+            label31.Size = new Size(88, 27);
             label31.TabIndex = 133;
             label31.Text = "员工姓名";
             // 
@@ -93,9 +95,9 @@
             // 
             label30.AutoSize = true;
             label30.Font = new Font("Noto Sans SC", 14.2499981F);
-            label30.Location = new Point(18, 162);
+            label30.Location = new Point(18, 157);
             label30.Name = "label30";
-            label30.Size = new Size(77, 19);
+            label30.Size = new Size(74, 27);
             label30.TabIndex = 134;
             label30.Text = "性      别";
             // 
@@ -103,19 +105,19 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Noto Sans SC", 14.2499981F);
-            label1.Location = new Point(329, 162);
+            label1.Location = new Point(334, 157);
             label1.Name = "label1";
-            label1.Size = new Size(77, 19);
+            label1.Size = new Size(78, 27);
             label1.TabIndex = 145;
-            label1.Text = "民      族";
+            label1.Text = "民       族";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Noto Sans SC", 14.2499981F);
-            label2.Location = new Point(18, 264);
+            label2.Location = new Point(18, 304);
             label2.Name = "label2";
-            label2.Size = new Size(85, 19);
+            label2.Size = new Size(88, 27);
             label2.TabIndex = 137;
             label2.Text = "居住地址";
             // 
@@ -125,7 +127,7 @@
             label16.Font = new Font("Noto Sans SC", 14.2499981F);
             label16.Location = new Point(329, 61);
             label16.Name = "label16";
-            label16.Size = new Size(85, 19);
+            label16.Size = new Size(88, 27);
             label16.TabIndex = 135;
             label16.Text = "所在部门";
             // 
@@ -142,7 +144,7 @@
             // txtEmployeeName
             // 
             txtEmployeeName.Font = new Font("Noto Sans SC", 12F);
-            txtEmployeeName.Location = new Point(103, 102);
+            txtEmployeeName.Location = new Point(103, 100);
             txtEmployeeName.Name = "txtEmployeeName";
             txtEmployeeName.Round = true;
             txtEmployeeName.Size = new Size(205, 45);
@@ -151,7 +153,7 @@
             // txtEmployeeAddress
             // 
             txtEmployeeAddress.Font = new Font("Noto Sans SC", 12F);
-            txtEmployeeAddress.Location = new Point(103, 251);
+            txtEmployeeAddress.Location = new Point(103, 296);
             txtEmployeeAddress.Name = "txtEmployeeAddress";
             txtEmployeeAddress.Round = true;
             txtEmployeeAddress.Size = new Size(515, 45);
@@ -160,7 +162,7 @@
             // txtEmployeeTel
             // 
             txtEmployeeTel.Font = new Font("Noto Sans SC", 12F);
-            txtEmployeeTel.Location = new Point(104, 202);
+            txtEmployeeTel.Location = new Point(104, 198);
             txtEmployeeTel.Name = "txtEmployeeTel";
             txtEmployeeTel.Round = true;
             txtEmployeeTel.Size = new Size(515, 45);
@@ -169,7 +171,7 @@
             // btnUpdate
             // 
             btnUpdate.Font = new Font("Noto Sans SC", 12F);
-            btnUpdate.Location = new Point(530, 302);
+            btnUpdate.Location = new Point(531, 361);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Shape = AntdUI.TShape.Round;
             btnUpdate.Size = new Size(87, 43);
@@ -183,7 +185,7 @@
             cboGender.Font = new Font("Noto Sans SC", 12F);
             cboGender.List = true;
             cboGender.ListAutoWidth = true;
-            cboGender.Location = new Point(103, 152);
+            cboGender.Location = new Point(103, 149);
             cboGender.Name = "cboGender";
             cboGender.Placement = AntdUI.TAlignFrom.Bottom;
             cboGender.Round = true;
@@ -195,11 +197,11 @@
             cboEmployeeNation.Font = new Font("Noto Sans SC", 12F);
             cboEmployeeNation.List = true;
             cboEmployeeNation.ListAutoWidth = true;
-            cboEmployeeNation.Location = new Point(413, 152);
+            cboEmployeeNation.Location = new Point(414, 147);
             cboEmployeeNation.Name = "cboEmployeeNation";
             cboEmployeeNation.Placement = AntdUI.TAlignFrom.Bottom;
             cboEmployeeNation.Round = true;
-            cboEmployeeNation.Size = new Size(204, 45);
+            cboEmployeeNation.Size = new Size(205, 45);
             cboEmployeeNation.TabIndex = 176;
             // 
             // cboEmployeePosition
@@ -207,7 +209,7 @@
             cboEmployeePosition.Font = new Font("Noto Sans SC", 12F);
             cboEmployeePosition.List = true;
             cboEmployeePosition.ListAutoWidth = true;
-            cboEmployeePosition.Location = new Point(413, 102);
+            cboEmployeePosition.Location = new Point(414, 100);
             cboEmployeePosition.Name = "cboEmployeePosition";
             cboEmployeePosition.Placement = AntdUI.TAlignFrom.Bottom;
             cboEmployeePosition.Round = true;
@@ -219,7 +221,7 @@
             cboEmployeeDepartment.Font = new Font("Noto Sans SC", 12F);
             cboEmployeeDepartment.List = true;
             cboEmployeeDepartment.ListAutoWidth = true;
-            cboEmployeeDepartment.Location = new Point(413, 51);
+            cboEmployeeDepartment.Location = new Point(414, 51);
             cboEmployeeDepartment.Name = "cboEmployeeDepartment";
             cboEmployeeDepartment.Placement = AntdUI.TAlignFrom.Bottom;
             cboEmployeeDepartment.Round = true;
@@ -228,17 +230,38 @@
             // 
             // ucWindowHeader1
             // 
-            ucWindowHeader1.Location = new Point(-1, -1);
+            ucWindowHeader1.Location = new Point(-1, -3);
             ucWindowHeader1.Name = "ucWindowHeader1";
             ucWindowHeader1.Size = new Size(639, 35);
             ucWindowHeader1.TabIndex = 179;
+            // 
+            // txtEmailAddress
+            // 
+            txtEmailAddress.Font = new Font("Noto Sans SC", 12F);
+            txtEmailAddress.Location = new Point(104, 247);
+            txtEmailAddress.Name = "txtEmailAddress";
+            txtEmailAddress.Round = true;
+            txtEmailAddress.Size = new Size(515, 45);
+            txtEmailAddress.TabIndex = 181;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Noto Sans SC", 14.2499981F);
+            label3.Location = new Point(18, 255);
+            label3.Name = "label3";
+            label3.Size = new Size(88, 27);
+            label3.TabIndex = 180;
+            label3.Text = "电子邮箱";
             // 
             // FrmPersonnelInfo
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 243, 255);
-            ClientSize = new Size(637, 359);
+            ClientSize = new Size(637, 416);
+            Controls.Add(txtEmailAddress);
+            Controls.Add(label3);
             Controls.Add(ucWindowHeader1);
             Controls.Add(cboEmployeeDepartment);
             Controls.Add(cboEmployeePosition);
@@ -257,12 +280,12 @@
             Controls.Add(label1);
             Controls.Add(label2);
             Controls.Add(label16);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmPersonnelInfo";
             Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmPersonnelInfo";
+            Text = "我的信息";
             Load += FrmPersonnelInfo_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -288,5 +311,7 @@
         private AntdUI.Select cboEmployeePosition;
         private AntdUI.Select cboEmployeeDepartment;
         private ucWindowHeader ucWindowHeader1;
+        private AntdUI.Input txtEmailAddress;
+        private Label label3;
     }
 }

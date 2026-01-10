@@ -23,8 +23,9 @@
  */
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Util;
+using EOM.TSHotelManagement.Shared;
 using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
@@ -36,8 +37,8 @@ namespace EOM.TSHotelManagement.FormUI
         private string GithubRepoUrl => "https://api.github.com/repos/easy-open-meta/TopskyHotelManagerSystem/releases/latest";
         private string GiteeRepoUrl => "https://gitee.com/api/v5/repos/java-and-net/TopskyHotelManagerSystem/releases/latest";
         private string GithubProxyUrl => "https://ghproxy.oscode.top";
-        private string FolderName => "TSHotelUpgradePackages";
-        private string FallbackUrl => "https://pan.gkhive.com/%E6%9C%AC%E5%9C%B0%E7%A3%81%E7%9B%98/blog_files/TS%E9%85%92%E5%BA%97%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E5%BA%93";
+        private string AppDataPath => Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+        private string FallbackUrl => "https://pan.gkhive.com/TSHotel";
 
         private ProgressBar progressBar;
 
@@ -95,41 +96,48 @@ namespace EOM.TSHotelManagement.FormUI
                 bool isGitee) where TAsset : class
         {
             var version = tagName.Replace("v", string.Empty);
-            lblReleaseLog.Text = $"{releaseBody}";
-            lblReleaseLog.Refresh();
+            rtbReleaseLog.Text = $"{releaseBody}";
             lbInternetSoftwareVersion.Text = version;
             lbInternetSoftwareVersion.Refresh();
-            if (version.Equals(lblLocalSoftwareVersion.Text.Trim()))
+
+            // 将版本字符串转换为 Version 对象进行比较
+            var localVersion = new Version(lblLocalSoftwareVersion.Text.Trim());
+            var serverVersion = new Version(version);
+
+            // 只有当服务器版本大于本地版本时才需要更新
+            if (serverVersion > localVersion)
             {
-                LoginInfo.SoftwareReleaseLog = $"{releaseBody}";
-                NotificationService.ShowSuccess("当前已是最新版本，无需更新！3秒后将自动跳转登录页面");
-                Task.Delay(3000).Wait();
-                Task.Run(() => threadPro());
-                return;
-            }
+                string downloadUrl = string.Empty;
+                if (isGitee)
+                {
+                    dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).FileName?.EndsWith(".exe") == true);
 
-            string downloadUrl = string.Empty;
-            if (isGitee)
-            {
-                dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).FileName?.EndsWith(".exe") == true);
+                    if (executableAsset == null) return;
 
-                if (executableAsset == null) return;
+                    downloadUrl = executableAsset.DownloadUrl;
+                }
+                else
+                {
+                    dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).Name?.EndsWith(".exe") == true);
 
-                downloadUrl = executableAsset.DownloadUrl;
+                    if (executableAsset == null) return;
+
+                    downloadUrl = $"{GithubProxyUrl}/{executableAsset.BrowserDownloadUrl}";
+                }
+
+
+
+                DownloadAndInstallUpdate(downloadUrl, "TS酒店管理系统.exe", new Progress<double>(ReportProgress), version);
+                lblTips.Text = "安装包正在下载中，请稍等...";
             }
             else
             {
-                dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).Name?.EndsWith(".exe") == true);
-
-                if (executableAsset == null) return;
-
-                downloadUrl = $"{GithubProxyUrl}/{executableAsset.BrowserDownloadUrl}";
+                progressBar.Value = 100;
+                LoginInfo.SoftwareReleaseLog = $"{releaseBody}";
+                NotificationService.ShowSuccess(LocalizationHelper.GetLocalizedString("The current version is already the latest, no need to update!", "当前已是最新版本，无需更新！"));
+                lblTips.Text = LocalizationHelper.GetLocalizedString("The current version is already the latest, no need to update!", "当前已是最新版本，无需更新！");
+                return;
             }
-
-
-
-            DownloadAndInstallUpdate(downloadUrl, "TS酒店管理系统.exe", new Progress<double>(ReportProgress), version);
-            lblTips.Text = "安装包正在下载中，请稍等...";
         }
 
         private async Task<string> GetDefaultUserAgentAsync()
@@ -167,7 +175,9 @@ namespace EOM.TSHotelManagement.FormUI
 
                 string selectedPath = fbdSavePath.SelectedPath;
 
-                string targetDirectory = Path.Combine(selectedPath, FolderName, tagName);
+                string targetDirectory = Path.Combine(selectedPath ?? AppDataPath,
+                    ApplicationUtil.GetApplicationCompanyName(),
+                    ApplicationUtil.GetApplicationName(), tagName);
 
                 if (!Path.Exists(targetDirectory))
                     Directory.CreateDirectory(targetDirectory);
@@ -349,6 +359,16 @@ namespace EOM.TSHotelManagement.FormUI
 
             [JsonProperty("avatar_url")]
             public string AvatarUrl { get; set; }
+        }
+
+        private void btnGo_Click(object sender, EventArgs e)
+        {
+            Task.Run(() => threadPro());
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            ExitApplication();
         }
     }
 }

@@ -217,7 +217,7 @@
             Controls.Add(label10);
             Controls.Add(label1);
             Controls.Add(label9);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmReserManager";
             Resizable = false;

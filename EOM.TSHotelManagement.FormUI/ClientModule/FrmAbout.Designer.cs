@@ -177,7 +177,7 @@
             Controls.Add(lblClientVersionDescriotion);
             Controls.Add(lblSoftName);
             Controls.Add(picLogo);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             Name = "FrmAbout";

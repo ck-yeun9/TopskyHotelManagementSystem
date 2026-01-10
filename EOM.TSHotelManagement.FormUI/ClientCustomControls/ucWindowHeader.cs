@@ -1,4 +1,4 @@
-﻿using EOM.TSHotelManagement.Common;
+﻿using EOM.TSHotelManagement.Shared;
 using System.Drawing.Drawing2D;
 
 namespace EOM.TSHotelManagement.FormUI

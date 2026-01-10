@@ -1,6 +1,7 @@
 ﻿using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Contract;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
 using System.ComponentModel;
 

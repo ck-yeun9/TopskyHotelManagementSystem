@@ -80,12 +80,12 @@
             Controls.Add(ucWindowHeader1);
             Controls.Add(label4);
             Controls.Add(picWorkerPic);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmAvator";
             Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmAvator";
+            Text = "账号头像";
             Load += FrmAvator_Load;
             ((System.ComponentModel.ISupportInitialize)picWorkerPic).EndInit();
             ResumeLayout(false);

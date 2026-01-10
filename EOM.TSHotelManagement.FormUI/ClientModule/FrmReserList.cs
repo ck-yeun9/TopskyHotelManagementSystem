@@ -22,8 +22,8 @@
  *
  */
 using AntdUI;
-using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Contract;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
 
@@ -139,12 +139,7 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            dic = new Dictionary<string, string>
-            {
-                { nameof(ReadGenderTypeInputDto.IsDelete), "0"},
-                { nameof(ReadGenderTypeInputDto.IgnorePaging), "true" }
-            };
-            result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
+            result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll);
             var genderTypeDataSource = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
             if (genderTypeDataSource.Success == false)
             {
@@ -200,7 +195,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             NotificationService.ShowSuccess("操作成功");
             LoadReserData();
-            FrmRoomManager.Reload("");
+            FrmRoomManager.Reload(0);
             FrmRoomManager._RefreshRoomCount();
             this.Close();
         }

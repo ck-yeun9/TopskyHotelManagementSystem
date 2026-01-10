@@ -1,8 +1,10 @@
-﻿namespace EOM.TSHotelManagement.Common
+﻿namespace EOM.TSHotelManagement.Shared
 {
     public static class ApiConstants
     {
         public const string Default_Version = "version";
+        public const string Common_GetCsrfToken = "Login/GetCsrfToken";
+
         // Base URLs
         public const string Base_SelectNationAll = "Base/SelectNationAll";
         public const string Base_SelectGenderTypeAll = "Base/SelectGenderTypeAll";

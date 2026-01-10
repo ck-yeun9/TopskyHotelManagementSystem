@@ -1,11 +1,11 @@
-﻿using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Util;
+﻿using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Contract;
 using jvncorelib.EntityLib;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace EOM.TSHotelManagement.Common
+namespace EOM.TSHotelManagement.Shared
 {
     /// <summary>
     /// 静态工具
@@ -118,6 +118,15 @@ namespace EOM.TSHotelManagement.Common
         public static string GetApplicationName()
         {
             return LocalizationHelper.GetLocalizedString("TopSky Hotel Management System", "TS酒店管理系统");
+        }
+
+        /// <summary>
+        /// 获取当前软件的公司名称
+        /// </summary>
+        /// <returns></returns>
+        public static string GetApplicationCompanyName()
+        {
+            return LocalizationHelper.GetLocalizedString("Easy Open Meta", "Easy Open Meta");
         }
 
         /// <summary>

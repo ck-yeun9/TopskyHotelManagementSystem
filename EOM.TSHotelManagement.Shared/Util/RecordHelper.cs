@@ -1,9 +1,9 @@
-﻿using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
+﻿using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Contract;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
 
-namespace EOM.TSHotelManagement.Common
+namespace EOM.TSHotelManagement.Shared
 {
     /// <summary>
     /// 日志记录助手

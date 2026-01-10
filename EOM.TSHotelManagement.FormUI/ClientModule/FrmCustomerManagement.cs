@@ -22,14 +22,16 @@
  *
  */
 
+using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Contract;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
 using System.Runtime.InteropServices;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmCustomerManager : Form
+    public partial class FrmCustomerManagement : Window
     {
         public static int cm_CustoId;
         public static string cm_CustoNo;
@@ -51,7 +53,7 @@ namespace EOM.TSHotelManagement.FormUI
         public static ReloadCustomerList ReloadCustomer;
 
         private LoadingProgress _loadingProgress;
-        public FrmCustomerManager()
+        public FrmCustomerManagement()
         {
             InitializeComponent();
             _loadingProgress = new LoadingProgress();
@@ -64,8 +66,9 @@ namespace EOM.TSHotelManagement.FormUI
         TableComHelper helper = new TableComHelper();
 
         #region 用户管理界面加载事件方法
-        private void FrmCustomerManager_Load(object sender, EventArgs e)
+        private void FrmCustomerManagement_Load(object sender, EventArgs e)
         {
+            btnClear.IconSvg = UIControlIconConstant.Clear;
             this.btnPg.PageSize = 15;
             LoadCustomer();
         }
@@ -99,6 +102,14 @@ namespace EOM.TSHotelManagement.FormUI
                 { nameof(ReadCustomerInputDto.PageSize), pageSize.ToString() },
                 { nameof(ReadCustomerInputDto.IsDelete), "0" }
             };
+            if (!txtCustoName.Text.Trim().IsNullOrEmpty())
+            {
+                dic.Add(nameof(ReadCustomerInputDto.CustomerName), txtCustoName.Text.Trim());
+            }
+            if (!txtCustoNo.Text.Trim().IsNullOrEmpty())
+            {
+                dic.Add(nameof(ReadCustomerInputDto.CustomerNumber), txtCustoNo.Text.Trim());
+            }
             result = HttpHelper.Request(ApiConstants.Customer_SelectCustomers, dic);
             var customers = HttpHelper.JsonToModel<ListOutputDto<ReadCustomerOutputDto>>(result.message);
             if (customers.Success == false)
@@ -150,7 +161,7 @@ namespace EOM.TSHotelManagement.FormUI
             custos = response.Data.Items;
             var totalCount = response.Data.TotalCount;
             var listTableData = new List<AntdUI.AntItem[]>();
-
+            btnPg.Total = totalCount;
             custos = custos.OrderBy(a => a.CustomerNumber).ThenBy(a => a.CustomerName).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();
@@ -253,6 +264,13 @@ namespace EOM.TSHotelManagement.FormUI
                 frmInputs.Text = "修改客户信息";
                 frmInputs.ShowDialog();
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtCustoName.Clear();
+            txtCustoNo.Clear();
+            LoadCustomer();
         }
     }
 

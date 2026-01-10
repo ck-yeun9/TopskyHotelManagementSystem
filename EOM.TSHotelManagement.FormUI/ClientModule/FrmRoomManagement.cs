@@ -24,11 +24,10 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Contract;
 using EOM.TSHotelManagement.FormUI.Properties;
-using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
+using EOM.TSHotelManagement.Shared;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -36,7 +35,7 @@ namespace EOM.TSHotelManagement.FormUI
     {
 
 
-        public delegate void ReLoadRoomList(string typeName);
+        public delegate void ReLoadRoomList(int typeId);
 
         public delegate void ReadRoomInfo();
 
@@ -181,12 +180,12 @@ namespace EOM.TSHotelManagement.FormUI
                 Description = new EnumHelper().GetEnumDescription(e)
             })
             .ToList();
-            MenuItem? menuItem = null;
+            AntdUI.MenuItem? menuItem = null;
             if (!stateList.IsNullOrEmpty())
             {
                 foreach (var item in stateList)
                 {
-                    menuItem = new MenuItem
+                    menuItem = new AntdUI.MenuItem
                     {
                         Text = item.Description + GetRoomCountText(item.Name),
                         ID = item.Id.ToString(),
@@ -255,10 +254,10 @@ namespace EOM.TSHotelManagement.FormUI
 
                 flpRoomTypes.Controls.Clear();
 
-                AddRoomTypeButton("全部房间", "btnAll", btnAll_Click);
+                AddRoomTypeButton("全部房间", "btnAll", btnAll_Click, 0);
                 foreach (var type in listRoomTypes)
                 {
-                    AddRoomTypeButton(type.RoomTypeName, Convert.ToString(type.RoomTypeName), btnRoomType_Click);
+                    AddRoomTypeButton(type.RoomTypeName, Convert.ToString(type.RoomTypeName), btnRoomType_Click, type.RoomTypeId);
                 }
             }
             catch (Exception ex)
@@ -267,11 +266,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
         }
 
-        private void AddRoomTypeButton(string text, string name, EventHandler clickEvent)
+        private void AddRoomTypeButton(string text, string name, EventHandler clickEvent, int id)
         {
             var ucRoomType = new ucRoomType();
             ucRoomType.btnRoomType.Text = text;
             ucRoomType.btnRoomType.Name = name;
+            ucRoomType.btnRoomType.Tag = id;
             ucRoomType.btnRoomType.Click += clickEvent;
             flpRoomTypes.Controls.Add(ucRoomType);
         }
@@ -280,8 +280,8 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (sender is AntdUI.Button button)
             {
-                string buttonName = button.Text;
-                LoadData(buttonName);
+                var typeId = button.Tag != null ? (int)button.Tag : 0;
+                LoadData(typeId);
             }
         }
 
@@ -300,48 +300,38 @@ namespace EOM.TSHotelManagement.FormUI
             lblRoomState.Text = ucRoom.co_RoomState;
         }
 
-        private void LoadData(string typeName = "")
+        private void LoadData(int typeId = 0)
         {
             flpRoom.Controls.Clear();
-            if (string.IsNullOrEmpty(typeName))
+            dic = new Dictionary<string, string>
             {
-                dic = new Dictionary<string, string>
-                {
-                    { nameof(ReadRoomInputDto.IsDelete), "0" },
-                    { nameof(ReadRoomInputDto.IgnorePaging), "true" }
-                };
-                result = HttpHelper.Request(ApiConstants.Room_SelectRoomAll, dic);
-                var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-                if (response.Success == false)
-                {
-                    NotificationService.ShowError($"{ApiConstants.Room_SelectRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
-                romsty = response.Data.Items;
-            }
-            else
+                { nameof(ReadRoomInputDto.IsDelete), "0" },
+                { nameof(ReadRoomInputDto.IgnorePaging), "true" }
+            };
+            if (typeId > 0)
             {
                 dic = new Dictionary<string, string>
                 {
                     { nameof(ReadRoomInputDto.IsDelete), "0" },
                     { nameof(ReadRoomInputDto.IgnorePaging), "true" },
-                    { nameof(ReadRoomInputDto.RoomTypeName), typeName }
+                    { nameof(ReadRoomInputDto.RoomTypeId), typeId.ToString() }
                 };
-                result = HttpHelper.Request(ApiConstants.Room_SelectRoomByTypeName, dic);
-                var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-                if (response.Success == false)
-                {
-                    NotificationService.ShowError($"{ApiConstants.Room_SelectRoomByTypeName}+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
-                romsty = response.Data.Items;
             }
+            result = HttpHelper.Request(ApiConstants.Room_SelectRoomAll, dic);
+            var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
+            if (response.Success == false)
+            {
+                NotificationService.ShowError($"{ApiConstants.Room_SelectRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
+            }
+            romsty = response.Data.Items;
+            
             for (int i = 0; i < romsty.Count; i++)
             {
                 room = new ucRoom(this);
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName ?? "      ");
-                room.romRoomInfo = romsty[i];
-                room.romCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
+                room.RomRoomInfo = romsty[i];
+                room.RomCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
                 flpRoom.Controls.Add(room);
             }
             lblRoomNo.Text = "";
@@ -373,8 +363,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 room = new ucRoom(this);
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName);
-                room.romRoomInfo = romsty[i];
-                room.romCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
+                room.RomRoomInfo = romsty[i];
+                room.RomCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
                 flpRoom.Controls.Add(room);
             }
             lblRoomNo.Text = "";
