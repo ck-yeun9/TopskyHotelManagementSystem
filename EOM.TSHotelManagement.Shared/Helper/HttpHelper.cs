@@ -224,6 +224,12 @@ namespace EOM.TSHotelManagement.Shared
 
             msg = DoGet(requestUrl);
 
+            if (msg.message.IsNullOrEmpty())
+            {
+                // try again
+                msg = DoGet(requestUrl);
+            }
+
             return msg;
 
         }

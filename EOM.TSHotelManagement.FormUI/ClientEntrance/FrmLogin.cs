@@ -128,15 +128,17 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 if (CheckInput())
                 {
-                    var worker = new ReadEmployeeInputDto() { EmployeeId = txtAccount.Text.Trim(), EmailAddress = txtAccount.Text.Trim(), Password = new EncryptLib().Encryption(txtWorkerPwd.Text.Trim(), EncryptionLevel.Enhanced) };
+                    var worker = new EmployeeLoginDto() { EmployeeId = txtAccount.Text.Trim(), EmailAddress = txtAccount.Text.Trim(), Password = new EncryptLib().Encryption(txtWorkerPwd.Text.Trim(), EncryptionLevel.Enhanced) };
 
-                    result = HttpHelper.Request(ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd, worker.ModelToJson());
+                    var json = worker.ModelToJson();
+
+                    result = HttpHelper.Request(ApiConstants.Employee_EmployeeLogin, worker.ModelToJson());
 
                     var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeOutputDto>>(result.message);
 
                     if (response.Success == false)
                     {
-                        NotificationService.ShowError(LocalizationHelper.GetLocalizedString($"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd} is abnormal. Please submit an issue", $"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd}+接口服务异常，请提交issue"));
+                        NotificationService.ShowError(LocalizationHelper.GetLocalizedString($"{ApiConstants.Employee_EmployeeLogin} is abnormal. Please submit an issue", $"{ApiConstants.Employee_EmployeeLogin}+接口服务异常，请提交issue"));
                         return;
                     }
 
