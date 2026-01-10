@@ -10,13 +10,14 @@ namespace EOM.TSHotelManagement.FormUI
     public partial class FrmPersonnelInfo : Window
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPersonnelInfo));
+        private readonly LoadingProgress _loadingProgress;
         public FrmPersonnelInfo()
         {
             InitializeComponent();
-
+            _loadingProgress = new LoadingProgress();
             ucWindowHeader1.ApplySettingsWithoutMinimize("我的信息", string.Empty, (Image)resources.GetObject("FrmPersonnelInfo.Icon")!);
         }
-
+        ReadEmployeeOutputDto currentEmployee;
         private void FrmPersonnelInfo_Load(object sender, EventArgs e)
         {
 
@@ -83,20 +84,21 @@ namespace EOM.TSHotelManagement.FormUI
                 NotificationService.ShowError($"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeId}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            ReadEmployeeOutputDto worker = employees.Data;
-            if (!worker.IsNullOrEmpty())
+            currentEmployee = employees.Data;
+            if (!currentEmployee.IsNullOrEmpty())
             {
-                txtEmployeeId.Text = worker.EmployeeId;
-                txtEmployeeName.Text = worker.EmployeeName;
-                cboGender.SelectedValue = worker.Gender;
-                cboEmployeePosition.Text = worker.PositionName;
-                cboEmployeePosition.SelectedValue = worker.Position;
-                cboEmployeeDepartment.Text = worker.DepartmentName;
-                cboEmployeeDepartment.SelectedValue = worker.Department;
-                cboEmployeeNation.Text = worker.EthnicityName;
-                cboEmployeeNation.SelectedValue = worker.Ethnicity;
-                txtEmployeeAddress.Text = worker.Address;
-                txtEmployeeTel.Text = worker.PhoneNumber;
+                txtEmployeeId.Text = currentEmployee.EmployeeId;
+                txtEmployeeName.Text = currentEmployee.EmployeeName;
+                cboGender.SelectedValue = currentEmployee.Gender;
+                cboEmployeePosition.Text = currentEmployee.PositionName;
+                cboEmployeePosition.SelectedValue = currentEmployee.Position;
+                cboEmployeeDepartment.Text = currentEmployee.DepartmentName;
+                cboEmployeeDepartment.SelectedValue = currentEmployee.Department;
+                cboEmployeeNation.Text = currentEmployee.EthnicityName;
+                cboEmployeeNation.SelectedValue = currentEmployee.Ethnicity;
+                txtEmployeeAddress.Text = currentEmployee.Address;
+                txtEmailAddress.Text = currentEmployee.EmailAddress;
+                txtEmployeeTel.Text = currentEmployee.PhoneNumber;
             }
             Refresh();
         }
@@ -133,27 +135,44 @@ namespace EOM.TSHotelManagement.FormUI
         ResponseMsg result = new ResponseMsg();
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            UpdateEmployeeInputDto worker = new UpdateEmployeeInputDto()
+            _loadingProgress.Show();
+            UpdateEmployeeInputDto employee = new UpdateEmployeeInputDto()
             {
+                Id = currentEmployee.Id,
                 EmployeeId = txtEmployeeId.Text.Trim(),
                 EmployeeName = txtEmployeeName.Text.Trim(),
                 Gender = cboGender.Text == "男" ? 1 : 0,
                 Ethnicity = cboEmployeeNation.SelectedValue.ToString(),
                 PhoneNumber = txtEmployeeTel.Text.Trim(),
                 Address = txtEmployeeAddress.Text.Trim(),
+                EmailAddress = txtEmailAddress.Text.Trim(),
+                PoliticalAffiliation = currentEmployee.PoliticalAffiliation,
+                Position = currentEmployee.Position,
+                Department = currentEmployee.Department,
+                HireDate = DateOnly.FromDateTime(currentEmployee.HireDate),
+                IdCardNumber = currentEmployee.IdCardNumber,
+                EducationLevel = currentEmployee.EducationLevel,
+                DateOfBirth = DateOnly.FromDateTime(currentEmployee.DateOfBirth),
+                IsEnable = currentEmployee.IsEnable,
+                IsDelete = currentEmployee.IsDelete,
+                IdCardType = currentEmployee.IdCardType,
+                Password = currentEmployee.Password,
+                OldPassword = currentEmployee.Password,
+                IsInitialize = currentEmployee.IsInitialize,
                 DataChgUsr = LoginInfo.WorkerNo,
                 DataChgDate = DateTime.Now
             };
 
-            if (CheckInput(worker))
+            if (CheckInput(employee))
             {
-                result = HttpHelper.Request(ApiConstants.Employee_UpdateEmployee, worker.ModelToJson());
+                result = HttpHelper.Request(ApiConstants.Employee_UpdateEmployee, employee.ModelToJson());
                 var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
                 if (response.Success == false)
                 {
                     NotificationService.ShowError($"{ApiConstants.Employee_UpdateEmployee}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
+                _loadingProgress.Close();
                 NotificationService.ShowSuccess("修改成功！");
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改个人信息操作！", LogLevel.Warning);

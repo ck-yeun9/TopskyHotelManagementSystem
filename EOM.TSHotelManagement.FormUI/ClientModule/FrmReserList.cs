@@ -195,7 +195,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             NotificationService.ShowSuccess("操作成功");
             LoadReserData();
-            FrmRoomManager.Reload("");
+            FrmRoomManager.Reload(0);
             FrmRoomManager._RefreshRoomCount();
             this.Close();
         }

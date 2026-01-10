@@ -85,7 +85,7 @@
             Name = "FrmAvator";
             Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmAvator";
+            Text = "账号头像";
             Load += FrmAvator_Load;
             ((System.ComponentModel.ISupportInitialize)picWorkerPic).EndInit();
             ResumeLayout(false);

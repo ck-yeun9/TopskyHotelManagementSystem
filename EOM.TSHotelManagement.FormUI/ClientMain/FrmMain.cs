@@ -236,8 +236,8 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
         }
 
-        AntdUI.IContextMenuStripItem[] menulist = new AntdUI.IContextMenuStripItem[]
-        {
+        AntdUI.IContextMenuStripItem[] menulist =
+        [
             new AntdUI.ContextMenuStripItem(UIControlConstant.ChangeAccount).SetIcon(UIControlIconConstant.ChangeAccount),
             new AntdUI.ContextMenuStripItem(UIControlConstant.PersonnalCenter).SetIcon(UIControlIconConstant.PersonnalCenter).SetSub(
                     new AntdUI.ContextMenuStripItem(UIControlConstant.PersonnalInformation).SetIcon(UIControlIconConstant.PersonnalInformation),
@@ -251,7 +251,7 @@ namespace EOM.TSHotelManagement.FormUI
                         ),
             new AntdUI.ContextMenuStripItem(UIControlConstant.About).SetIcon(UIControlIconConstant.About),
             new AntdUI.ContextMenuStripItem(UIControlConstant.ExitSystem).SetIcon(UIControlIconConstant.Exit)
-        };
+        ];
 
         #region 窗体加载事件方法
         private void FrmMain_Load(object sender, EventArgs e)

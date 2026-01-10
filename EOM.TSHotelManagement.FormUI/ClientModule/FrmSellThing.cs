@@ -69,9 +69,12 @@ namespace EOM.TSHotelManagement.FormUI
         {
             dic = new Dictionary<string, string>()
             {
-                { nameof(ReadSellThingInputDto.ProductName) , sellthing.Trim() },
                 { nameof(ReadSellThingInputDto.IsDelete) , "0" }
             };
+            if (!sellthing.IsNullOrEmpty())
+            {
+                dic.Add(nameof(ReadSellThingInputDto.ProductName), sellthing.Trim());
+            }
             result = HttpHelper.Request(ApiConstants.Sellthing_SelectSellThingAll, dic);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadSellThingOutputDto>>(result.message);
             if (response.Success == false)
@@ -86,6 +89,8 @@ namespace EOM.TSHotelManagement.FormUI
 
             TableComHelper tableComHelper = new TableComHelper();
             listTableData = tableComHelper.ConvertToAntdItems(lstData);
+
+            btnPg.Total = response.Data.TotalCount;
 
             dgvSellthing.Spin("正在加载中...", config =>
             {
@@ -152,6 +157,10 @@ namespace EOM.TSHotelManagement.FormUI
                 { nameof(ReadSellThingInputDto.PageSize), pageSize.ToString() },
                 { nameof(ReadSellThingInputDto.IsDelete), "0"}
             };
+            if (!txtFind.Text.Trim().IsNullOrEmpty())
+            {
+                dic.Add(nameof(ReadSellThingInputDto), txtFind.Text.Trim());
+            }
             result = HttpHelper.Request(ApiConstants.Sellthing_SelectSellThingAll, dic);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadSellThingOutputDto>>(result.message);
             if (response.Success == false)
@@ -161,6 +170,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             List<ReadSellThingOutputDto> lstData = response.Data.Items;
             totalCount = lstData.Count;
+            btnPg.Total = totalCount;
             var listTableData = new List<AntdUI.AntItem[]>();
 
             TableComHelper tableComHelper = new TableComHelper();
@@ -215,7 +225,12 @@ namespace EOM.TSHotelManagement.FormUI
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (lblState.Visible == false)
+            if(tgState.Type != TTypeMini.Success)
+            {
+                NotificationService.ShowWarning("该房间不可消费！");
+                return;
+            }
+            if (txtRoomNo.Text.Trim().IsNullOrEmpty())
             {
                 NotificationService.ShowWarning("请先输入消费的房间！");
                 return;
@@ -225,40 +240,39 @@ namespace EOM.TSHotelManagement.FormUI
                 NotificationService.ShowWarning("请输入消费数量！");
                 return;
             }
-            if (lblState.Text == "该房间可消费")
+
+            if (!CheckInput()) return;
+
+            try
             {
-                if (!CheckInput()) return;
-
-                try
+                var customerSpend = new AddCustomerSpendInputDto
                 {
-                    var customerSpend = new AddCustomerSpendInputDto
-                    {
-                        RoomNumber = txtRoomNo.Text.Trim(),
-                        ProductNumber = txtSellNo.Text.Trim(),
-                        ProductName = txtSellName.Text.Trim(),
-                        Quantity = (int)nudNum.Value,
-                        Price = Convert.ToDecimal(txtPrice.Text),
-                        WorkerNo = LoginInfo.WorkerNo,
-                        SoftwareVersion = LoginInfo.SoftwareVersion
-                    };
-                    var result = HttpHelper.Request(ApiConstants.Spend_AddCustomerSpend, customerSpend.ModelToJson());
-                    var response = HttpHelper.JsonToModel<BaseResponse>(result.message!);
-                    if (response.Success == false)
-                    {
-                        NotificationService.ShowError(response.Message ?? "添加消费记录失败");
-                        return;
-                    }
-                    NotificationService.ShowSuccess("添加成功");
-
-                    LoadSpendInfoByRoomNo(r);
-                    LoadSellThingInfo();
-                }
-                catch (Exception ex)
+                    RoomNumber = txtRoomNo.Text.Trim(),
+                    ProductNumber = txtSellNo.Text.Trim(),
+                    ProductName = txtSellName.Text.Trim(),
+                    Quantity = (int)nudNum.Value,
+                    Price = Convert.ToDecimal(txtPrice.Text),
+                    WorkerNo = LoginInfo.WorkerNo,
+                    SoftwareVersion = LoginInfo.SoftwareVersion
+                };
+                var result = HttpHelper.Request(ApiConstants.Spend_AddCustomerSpend, customerSpend.ModelToJson());
+                var response = HttpHelper.JsonToModel<BaseResponse>(result.message!);
+                if (response.Success == false)
                 {
-                    NotificationService.ShowError($"接口调用异常: {ex.Message}");
+                    NotificationService.ShowError(response.Message ?? "添加消费记录失败");
                     return;
                 }
+                NotificationService.ShowSuccess("添加成功");
+
+                LoadSpendInfoByRoomNo(r);
+                LoadSellThingInfo();
             }
+            catch (Exception ex)
+            {
+                NotificationService.ShowError($"接口调用异常: {ex.Message}");
+                return;
+            }
+
         }
 
         /// <summary>
@@ -268,7 +282,7 @@ namespace EOM.TSHotelManagement.FormUI
         /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (lblState.Visible == false)
+            if (txtRoomNo.Text.Trim().IsNullOrEmpty())
             {
                 NotificationService.ShowWarning("请先输入消费的房间！");
                 return;
@@ -381,28 +395,29 @@ namespace EOM.TSHotelManagement.FormUI
             r = checkResponse.Data;
             if (txtRoomNo.Text == "")
             {
-                lblState.Text = "";
+                tgState.Text = "";
+                tgState.Type = TTypeMini.Warn;
             }
             else if (r == null)
             {
-                lblState.Visible = true;
-                lblState.Text = "该房间不存在";
-                lblState.ForeColor = Color.Red;
+                tgState.Visible = true;
+                tgState.Text = "该房间不存在";
+                tgState.Type = TTypeMini.Error;
             }
             else if (!r.IsNullOrEmpty())
             {
                 if (r.RoomStateId == new EnumHelper().GetEnumValue(RoomState.Occupied))
                 {
-                    lblState.Visible = true;
-                    lblState.Text = "该房间可消费";
-                    lblState.ForeColor = Color.Black;
+                    tgState.Visible = true;
+                    tgState.Text = "该房间可消费";
+                    tgState.Type = TTypeMini.Success;
                     LoadSpendInfoByRoomNo(r);
                 }
                 else
                 {
-                    lblState.Visible = true;
-                    lblState.Text = "该房间不可消费";
-                    lblState.ForeColor = Color.Red;
+                    tgState.Visible = true;
+                    tgState.Text = "该房间不可消费";
+                    tgState.Type = TTypeMini.Error;
                 }
             }
         }
@@ -410,7 +425,7 @@ namespace EOM.TSHotelManagement.FormUI
         TableComHelper helper = new TableComHelper();
         private void dgvSellthing_CellClick(object sender, AntdUI.TableClickEventArgs e)
         {
-            if (lblState.Visible == false)
+            if (txtRoomNo.Text.Trim().IsNullOrEmpty())
             {
                 NotificationService.ShowWarning("请先输入消费的房间！");
                 return;

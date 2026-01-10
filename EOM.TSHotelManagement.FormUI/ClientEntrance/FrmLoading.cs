@@ -99,7 +99,38 @@ namespace EOM.TSHotelManagement.FormUI
             rtbReleaseLog.Text = $"{releaseBody}";
             lbInternetSoftwareVersion.Text = version;
             lbInternetSoftwareVersion.Refresh();
-            if (version.Equals(lblLocalSoftwareVersion.Text.Trim()))
+
+            // 将版本字符串转换为 Version 对象进行比较
+            var localVersion = new Version(lblLocalSoftwareVersion.Text.Trim());
+            var serverVersion = new Version(version);
+
+            // 只有当服务器版本大于本地版本时才需要更新
+            if (serverVersion > localVersion)
+            {
+                string downloadUrl = string.Empty;
+                if (isGitee)
+                {
+                    dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).FileName?.EndsWith(".exe") == true);
+
+                    if (executableAsset == null) return;
+
+                    downloadUrl = executableAsset.DownloadUrl;
+                }
+                else
+                {
+                    dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).Name?.EndsWith(".exe") == true);
+
+                    if (executableAsset == null) return;
+
+                    downloadUrl = $"{GithubProxyUrl}/{executableAsset.BrowserDownloadUrl}";
+                }
+
+
+
+                DownloadAndInstallUpdate(downloadUrl, "TS酒店管理系统.exe", new Progress<double>(ReportProgress), version);
+                lblTips.Text = "安装包正在下载中，请稍等...";
+            }
+            else
             {
                 progressBar.Value = 100;
                 LoginInfo.SoftwareReleaseLog = $"{releaseBody}";
@@ -107,29 +138,6 @@ namespace EOM.TSHotelManagement.FormUI
                 lblTips.Text = LocalizationHelper.GetLocalizedString("The current version is already the latest, no need to update!", "当前已是最新版本，无需更新！");
                 return;
             }
-
-            string downloadUrl = string.Empty;
-            if (isGitee)
-            {
-                dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).FileName?.EndsWith(".exe") == true);
-
-                if (executableAsset == null) return;
-
-                downloadUrl = executableAsset.DownloadUrl;
-            }
-            else
-            {
-                dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).Name?.EndsWith(".exe") == true);
-
-                if (executableAsset == null) return;
-
-                downloadUrl = $"{GithubProxyUrl}/{executableAsset.BrowserDownloadUrl}";
-            }
-
-
-
-            DownloadAndInstallUpdate(downloadUrl, "TS酒店管理系统.exe", new Progress<double>(ReportProgress), version);
-            lblTips.Text = "安装包正在下载中，请稍等...";
         }
 
         private async Task<string> GetDefaultUserAgentAsync()

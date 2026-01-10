@@ -210,6 +210,25 @@ namespace EOM.TSHotelManagement.Shared
         }
 
         /// <summary>
+        /// CSRF令牌请求方法
+        /// </summary>
+        /// <returns></returns>
+        public static ResponseMsg CsrfTokenRequest(string url)
+        {
+            ResponseMsg msg = new ResponseMsg();
+
+            //处理url
+            var sourceStr = url.Replace("​", string.Empty);
+
+            var requestUrl = apiUrl + sourceStr;
+
+            msg = DoGet(requestUrl);
+
+            return msg;
+
+        }
+
+        /// <summary>
         /// GET请求
         /// </summary>
         /// <param name="url"></param>
@@ -286,12 +305,16 @@ namespace EOM.TSHotelManagement.Shared
         /// <param name="referer"></param>
         /// <param name="cookie"></param>
         /// <param name="dicHeaders"></param>
+        /// <param name="skipCsrfRefresh">是否跳过CSRF令牌刷新（用于刷新令牌的请求本身）</param>
         /// <returns></returns>
-        public static ResponseMsg DoPost(string url, string? jsonParam = null, string? contentType = null, string? referer = null, string? cookie = null, Dictionary<string, string>? dicHeaders = null)
+        public static ResponseMsg DoPost(string url, string? jsonParam = null, string? contentType = null,
+            string? referer = null, string? cookie = null,
+            Dictionary<string, string>? dicHeaders = null, bool skipCsrfRefresh = false)
         {
             var reponse = new RestResponse();
             var client = new RestClient(url);
             var request = new RestRequest();
+
             if (!string.IsNullOrEmpty(contentType))
             {
                 request.AddHeader("Content-Type", contentType);
@@ -321,18 +344,44 @@ namespace EOM.TSHotelManagement.Shared
 
             request.AddHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36");
 
-            request.AddBody(jsonParam!);
-
-            var token = LoginInfo.UserToken;
-
-            request.AddHeader("Authorization", string.Format("Bearer {0}", token));
-
-            if (LoginInfo.NeedRefreshCsrfToken)
+            if (!jsonParam.IsNullOrEmpty())
             {
-                CsrfTokenHelper.RefreshCsrfToken();
+                request.AddBody(jsonParam!, ContentType.Json);
             }
 
-            request.AddHeader("X-CSRF-TOKEN-HEADER", LoginInfo.CsrfToken ?? CsrfTokenHelper.RefreshCsrfToken());
+            var token = LoginInfo.UserToken;
+            request.AddHeader("Authorization", string.Format("Bearer {0}", token));
+
+            // 处理CSRF令牌
+            string? csrfToken = null;
+
+            if (!skipCsrfRefresh)
+            {
+                // 只有在需要刷新时才刷新令牌
+                if (LoginInfo.NeedRefreshCsrfToken)
+                {
+                    csrfToken = CsrfTokenHelper.RefreshCsrfToken();
+                    // 重置刷新标志
+                    LoginInfo.NeedRefreshCsrfToken = false;
+                }
+                else
+                {
+                    // 使用现有的令牌
+                    csrfToken = LoginInfo.CsrfToken;
+
+                    // 如果令牌为空，尝试获取一个
+                    if (string.IsNullOrEmpty(csrfToken))
+                    {
+                        csrfToken = CsrfTokenHelper.GetCsrfToken();
+                    }
+                }
+            }
+
+            // 只有令牌不为空时才添加
+            if (!string.IsNullOrEmpty(csrfToken))
+            {
+                request.AddHeader("X-CSRF-TOKEN-HEADER", csrfToken);
+            }
 
             reponse = client.ExecutePost(request);
 
@@ -340,7 +389,6 @@ namespace EOM.TSHotelManagement.Shared
 
             return new ResponseMsg() { message = responseString };
         }
-
         /// <summary>
         /// 获取文件的MIME类型
         /// </summary>

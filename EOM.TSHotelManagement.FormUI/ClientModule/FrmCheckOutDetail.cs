@@ -198,7 +198,7 @@ namespace EOM.TSHotelManagement.FormUI
                     return;
                 }
                 NotificationService.ShowSuccess("结算成功！");
-                FrmRoomManager.Reload("");
+                FrmRoomManager.Reload(0);
                 FrmRoomManager._RefreshRoomCount();
 
                 #region 获取添加操作日志所需的信息

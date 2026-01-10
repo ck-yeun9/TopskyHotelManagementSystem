@@ -133,15 +133,15 @@ namespace EOM.TSHotelManagement.FormUI
         private const int GWL_EXSTYLE = (-20);
         [DllImport("user32", EntryPoint = "SetWindowLong")]
         private static extern uint SetWindowLong(
-       IntPtr hwnd,
-       int nIndex,
-       uint dwNewLong
-       );
+           IntPtr hwnd,
+           int nIndex,
+           uint dwNewLong
+           );
         [DllImport("user32", EntryPoint = "GetWindowLong")]
         private static extern uint GetWindowLong(
-       IntPtr hwnd,
-       int nIndex
-       );
+           IntPtr hwnd,
+           int nIndex
+           );
         /// <summary>
         /// 使窗口有鼠标穿透功能
         /// </summary>

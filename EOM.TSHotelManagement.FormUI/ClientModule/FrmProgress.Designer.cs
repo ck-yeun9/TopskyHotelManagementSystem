@@ -60,7 +60,7 @@
             ShowInTaskbar = false;
             SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Loading...";
+            Text = "加载中......";
             TopMost = true;
             Load += FrmProgress_Load;
             ResumeLayout(false);

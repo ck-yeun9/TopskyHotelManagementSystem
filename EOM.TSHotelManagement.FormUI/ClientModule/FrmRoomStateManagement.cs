@@ -81,7 +81,7 @@ namespace EOM.TSHotelManagement.FormUI
                         return;
                     }
                     NotificationService.ShowSuccess("房间" + txtRoomNo.Text + "成功修改为" + cboRoomState.Text);
-                    FrmRoomManager.Reload("");
+                    FrmRoomManager.Reload(0);
                     FrmRoomManager._RefreshRoomCount();
                     this.Close();
                     break;

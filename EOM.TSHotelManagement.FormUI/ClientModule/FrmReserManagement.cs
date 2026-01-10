@@ -92,7 +92,7 @@ namespace EOM.TSHotelManagement.FormUI
                 RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", LogLevel.Normal);
                 #endregion
                 scope.Complete();
-                FrmRoomManager.Reload("");
+                FrmRoomManager.Reload(0);
                 FrmRoomManager._RefreshRoomCount();
                 this.Close();
             }

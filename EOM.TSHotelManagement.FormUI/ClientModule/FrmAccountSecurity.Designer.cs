@@ -145,7 +145,7 @@
             Name = "FrmAccountSecurity";
             Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmAccountSecurity";
+            Text = "账号安全";
             Load += FrmAccountSecurity_Load;
             ResumeLayout(false);
         }

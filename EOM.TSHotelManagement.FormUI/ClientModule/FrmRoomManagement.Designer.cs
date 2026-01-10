@@ -215,6 +215,7 @@
             Margin = new Padding(4);
             Name = "FrmRoomManager";
             StartPosition = FormStartPosition.CenterScreen;
+            Text = "客房管理";
             TransparencyKey = Color.White;
             Load += FrmRoomManager_Load;
             pnlRoomInfo.ResumeLayout(false);

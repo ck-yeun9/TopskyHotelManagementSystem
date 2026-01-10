@@ -12,7 +12,7 @@ namespace EOM.TSHotelManagement.Shared
     {
         public static string GetCsrfToken()
         {
-            var apiResponse = HttpHelper.Request(ApiConstants.Common_GetCsrfToken, string.Empty);
+            var apiResponse = HttpHelper.CsrfTokenRequest(ApiConstants.Common_GetCsrfToken);
             var response = HttpHelper.JsonToModel<SingleOutputDto<CsrfTokenDto>>(apiResponse.message);
             if (response.Success && response.Data != null)
             {
@@ -25,15 +25,7 @@ namespace EOM.TSHotelManagement.Shared
 
         public static string RefreshCsrfToken()
         {
-            var apiResponse = HttpHelper.Request(ApiConstants.Common_RefreshCsrfToken, string.Empty);
-            var response = HttpHelper.JsonToModel<SingleOutputDto<CsrfTokenDto>>(apiResponse.message);
-            if (response.Success && response.Data != null)
-            {
-                LoginInfo.CsrfToken = response.Data.Token;
-                LoginInfo.NeedRefreshCsrfToken = response.Data.NeedsRefresh;
-            }
-
-            return LoginInfo.CsrfToken ?? string.Empty;
+            return GetCsrfToken();
         }
     }
 }

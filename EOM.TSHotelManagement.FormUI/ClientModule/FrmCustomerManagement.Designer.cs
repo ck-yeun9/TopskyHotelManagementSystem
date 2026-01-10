@@ -207,7 +207,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
             Name = "FrmCustomerManagement";
-            Text = "TS酒店管理系统";
+            Text = "客户管理";
             Load += FrmCustomerManagement_Load;
             cmsCustomerAction.ResumeLayout(false);
             ResumeLayout(false);

@@ -10,26 +10,58 @@ namespace EOM.TSHotelManagement.FormUI
     {
         private XDocument _xmlDoc;
 
-        public TableComHelper()
+        public TableComHelper(string resourceType = ".xml", string? specificFileName = null)
         {
             try
             {
                 var assembly = Assembly.GetExecutingAssembly();
+                string[] resourceNames = assembly.GetManifestResourceNames();
 
-                var resourceName = assembly.GetManifestResourceNames()
-                    .FirstOrDefault(name => name.EndsWith("EOM.TSHotelManagement.Common.Contract.xml"));
+                // 根据传入的参数筛选资源
+                string? resourceName = null;
+
+                if (!string.IsNullOrEmpty(specificFileName))
+                {
+                    // 如果有特定的文件名，精确匹配
+                    resourceName = resourceNames.FirstOrDefault(name =>
+                        name.EndsWith(specificFileName, StringComparison.OrdinalIgnoreCase));
+                }
+                else
+                {
+                    // 否则根据资源类型筛选
+                    resourceName = resourceNames.FirstOrDefault(name =>
+                        name.EndsWith(resourceType, StringComparison.OrdinalIgnoreCase) ||
+                        name.Contains(resourceType, StringComparison.OrdinalIgnoreCase));
+                }
 
                 if (string.IsNullOrEmpty(resourceName))
-                    throw new FileNotFoundException("未找到嵌入的XML资源");
+                {
+                    // 如果没有找到，尝试其他常见名称模式
+                    if (resourceType.ToLower() == ".xml")
+                    {
+                        resourceName = resourceNames.FirstOrDefault(name =>
+                            name.EndsWith(".xml", StringComparison.OrdinalIgnoreCase) ||
+                            name.Contains("Contract.xml") ||
+                            name.Contains(".contract."));
+                    }
+                }
+
+                if (string.IsNullOrEmpty(resourceName))
+                {
+                    // 记录可用的资源名称以便调试
+                    var availableResources = string.Join(", ", resourceNames);
+                    throw new FileNotFoundException($"未找到指定的嵌入资源。资源类型: {resourceType}, 特定文件名: {specificFileName}。可用资源: {availableResources}");
+                }
 
                 using (var stream = assembly.GetManifestResourceStream(resourceName))
                 {
                     if (stream == null)
-                        throw new FileNotFoundException("无法加载资源流");
+                        throw new FileNotFoundException($"无法加载资源流: {resourceName}");
 
                     using (var reader = new StreamReader(stream, Encoding.UTF8))
                     {
                         _xmlDoc = XDocument.Load(reader);
+                        Console.WriteLine($"成功加载嵌入资源: {resourceName}");
                     }
                 }
             }
@@ -37,7 +69,6 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 throw new InvalidOperationException("无法加载嵌入的XML内容", ex);
             }
-
         }
 
         /// <summary>

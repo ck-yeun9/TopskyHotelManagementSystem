@@ -12,6 +12,7 @@
 	  <ImplicitUsings>enable</ImplicitUsings>
 	  <ForceDesignerDPIUnaware>true</ForceDesignerDPIUnaware>
 	  <Version>2.10.7.0</Version>
+	  <ProductVersion>2.10.7.0</ProductVersion>
 	  <StartupObject>EOM.TSHotelManagement.FormUI.Program</StartupObject>
 	  <PlatformTarget>x64</PlatformTarget>
 	  <AssemblyName>TS酒店管理系统</AssemblyName>
@@ -20,8 +21,8 @@
 	  <FodyDisabled>false</FodyDisabled>
 	  <ApplicationManifest>app.manifest</ApplicationManifest>
 	  <Platforms>x64</Platforms>
-  </PropertyGroup>
-  <ItemGroup>
+	</PropertyGroup>
+	<ItemGroup>
     <Compile Update="ClientModule\FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,7 +109,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="FodyWeavers.xml" />
-	  <None Remove="Resources\EOM.TSHotelManagement.Contract.xml" />
+	  <None Remove="TableComponent\ContractXml\EOM.TSHotelManagement.Contract.xml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Include="Logo\bitbug_favicon (1).ico" />
@@ -117,6 +118,11 @@
 	  <Content Include="FodyWeavers.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="TableComponent\ContractXml\EOM.TSHotelManagement.Contract.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\EOM.TSHotelManagement.Shared\EOM.TSHotelManagement.Shared.csproj" />

@@ -102,6 +102,14 @@ namespace EOM.TSHotelManagement.FormUI
                 { nameof(ReadCustomerInputDto.PageSize), pageSize.ToString() },
                 { nameof(ReadCustomerInputDto.IsDelete), "0" }
             };
+            if (!txtCustoName.Text.Trim().IsNullOrEmpty())
+            {
+                dic.Add(nameof(ReadCustomerInputDto.CustomerName), txtCustoName.Text.Trim());
+            }
+            if (!txtCustoNo.Text.Trim().IsNullOrEmpty())
+            {
+                dic.Add(nameof(ReadCustomerInputDto.CustomerNumber), txtCustoNo.Text.Trim());
+            }
             result = HttpHelper.Request(ApiConstants.Customer_SelectCustomers, dic);
             var customers = HttpHelper.JsonToModel<ListOutputDto<ReadCustomerOutputDto>>(result.message);
             if (customers.Success == false)
@@ -153,7 +161,7 @@ namespace EOM.TSHotelManagement.FormUI
             custos = response.Data.Items;
             var totalCount = response.Data.TotalCount;
             var listTableData = new List<AntdUI.AntItem[]>();
-
+            btnPg.Total = totalCount;
             custos = custos.OrderBy(a => a.CustomerNumber).ThenBy(a => a.CustomerName).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();

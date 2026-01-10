@@ -49,8 +49,8 @@
             dgvRoomSell = new AntdUI.Table();
             label1 = new AntdUI.Label();
             label2 = new AntdUI.Label();
-            lblState = new AntdUI.Label();
             btnClear = new AntdUI.Button();
+            tgState = new AntdUI.Tag();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
@@ -276,16 +276,6 @@
             label2.Text = "消费房号：";
             label2.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // lblState
-            // 
-            lblState.Location = new Point(886, 22);
-            lblState.Name = "lblState";
-            lblState.Size = new Size(107, 23);
-            lblState.TabIndex = 141;
-            lblState.Tag = "";
-            lblState.Text = "";
-            lblState.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // btnClear
             // 
             btnClear.Location = new Point(462, 12);
@@ -295,13 +285,22 @@
             btnClear.TabIndex = 155;
             btnClear.Click += btnClear_Click;
             // 
+            // tgState
+            // 
+            tgState.Location = new Point(875, 23);
+            tgState.Name = "tgState";
+            tgState.Size = new Size(158, 23);
+            tgState.TabIndex = 156;
+            tgState.Text = "tag1";
+            tgState.Visible = false;
+            // 
             // FrmSellThing
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(1072, 486);
+            Controls.Add(tgState);
             Controls.Add(btnClear);
-            Controls.Add(lblState);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(dgvRoomSell);
@@ -372,7 +371,7 @@
         private AntdUI.Label label4;
         private AntdUI.Label label3;
         private AntdUI.Label label7;
-        private AntdUI.Label lblState;
         private AntdUI.Button btnClear;
+        private AntdUI.Tag tgState;
     }
 }

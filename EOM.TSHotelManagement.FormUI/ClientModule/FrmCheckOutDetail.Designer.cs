@@ -351,7 +351,7 @@
             Name = "FrmCheckOutDetail";
             Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmCheckOutDetail";
+            Text = "结算退房";
             Load += FrmCheckOutDetail_Load;
             ResumeLayout(false);
             PerformLayout();
