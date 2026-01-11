@@ -138,10 +138,10 @@ EOM.Client.TopskyHotelManagementSystem
 
 #  :inbox_tray: 依赖项目开源协议：
 
-Fody [MIT Linsense](https://github.com/Fody/Fody/blob/master/License.txt)
+Fody [MIT License](https://github.com/Fody/Fody/blob/master/License.txt)
 
-RestSharp [Apache-2.0 Linsense](https://github.com/restsharp/RestSharp/blob/dev/LICENSE.txt)
+RestSharp [Apache-2.0 License](https://github.com/restsharp/RestSharp/blob/dev/LICENSE.txt)
 
-AntdUI [Apache-2.0 Linsense](https://gitee.com/AntdUI/AntdUI/blob/main/LICENSE)
+AntdUI [Apache-2.0 License](https://gitee.com/AntdUI/AntdUI/blob/main/LICENSE)
 
 [![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)
