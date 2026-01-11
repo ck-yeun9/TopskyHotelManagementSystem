@@ -12,7 +12,7 @@
 
 #  :exclamation: 重要说明：
 
-**1.目前master分支随v2.10.x版本变动而变动，v2.8.x和v2.0.x版本以及v1.x版本均以归档，因此想要v1.x和v2.0.x版本的可移步至对应分支地址:<br/>
+**1.目前master分支随v2.10.x版本变动而变动，v2.8.x和v2.0.x版本以及v1.x版本均以归档，因此想要v1.x和v2.0.x版本以及v2.8.x版本的可访问下面对应分支地址获取:<br/>
     v1.x分支：https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/<br/>
     v2.x分支：https://gitee.com/java-and-net/TopskyHotelManagementSystem/tree/v2.0.x<br/> 
     v2.8.x分支：https://gitee.com/java-and-net/TopskyHotelManagementSystem/tree/v2.8.x**
@@ -69,9 +69,9 @@
 
 开发平台：.Net
 
-开发框架：.Net 8
+开发框架：.Net 10
 
-开发技术：.NET 8 WinForm
+开发技术：.NET 10 WinForm
 
 #  :open_file_folder: 系统结构：
 ```tree
@@ -82,7 +82,7 @@ EOM.Client.TopskyHotelManagementSystem
 ├─ FodyWeavers.xml
 ├─ LICENSE
 ├─ README.md
-├─ EOM.TopskyHotelManagementSystem.Common
+├─ EOM.TopskyHotelManagementSystem.Shared
 ├─ EOM.TopskyHotelManagementSystem.FormUI
 │    ├─ .gitignore
 │    ├─ App.config
@@ -96,7 +96,6 @@ EOM.Client.TopskyHotelManagementSystem
 │    ├─ Program.cs
 │    ├─ Properties
 │    ├─ Resources
-├─ SYS.Library
 ├─ 数据库脚本
 ├─ 项目效果图
 └─ 项目相关文档
@@ -130,12 +129,12 @@ EOM.Client.TopskyHotelManagementSystem
 
 #  :computer: 项目运行部署：
 
-**下载并安装.NET 8及以上SDK版本。**
-**下载并安装Microsoft Visual Studio Professional 2022及以上版本，并通过下载Zip包解压，打开.sln后缀格式文件运行。**
+**下载并安装.NET 10及以上SDK版本。**
+**下载并安装Microsoft Visual Studio Professional 2026及以上版本，并通过下载Zip包解压，打开.sln后缀格式文件运行。**
 
 #  :inbox_tray: 开源协议：
 
-[MIT Linsense](https://gitee.com/java-and-net/TopskyHotelManagementSystem/blob/master/LICENSE)
+[MIT License](https://gitee.com/java-and-net/TopskyHotelManagementSystem/blob/master/LICENSE)
 
 #  :inbox_tray: 依赖项目开源协议：
 
