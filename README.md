@@ -12,7 +12,7 @@
 
 #  :exclamation: 重要说明：
 
-**1.目前master分支随v2.8.x版本变动而变动，v2.0.x版本与v1.x版本均以归档，因此想要v1.x和v2.0.x版本的可移步至对应分支地址:<br/>
+**1.目前master分支随v2.10.x版本变动而变动，v2.0.x版本与v1.x版本均以归档，因此想要v1.x和v2.0.x版本的可移步至对应分支地址:<br/>
     v1.x分支：https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/<br/>
     v2.x分支：https://gitee.com/java-and-net/TopskyHotelManagementSystem/tree/v2.0.x** 
 
